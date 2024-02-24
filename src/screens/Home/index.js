@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { fetchEvents } from '../../api/Events'
 
 const Home = ({...props}) => {
-  useEffect(()=>{
-  },[])
+  
   return (
     <View>
       <Text>Home</Text>
