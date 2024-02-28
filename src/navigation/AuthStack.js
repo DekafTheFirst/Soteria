@@ -3,12 +3,12 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import Tabs from './Tabs';
 import Register from '../screens/Register/index.js';
-import Login from '../screens/Login/index.js';
 import About from '../screens/About/index.js';
 import EventDetails from '../screens/EventDetails/index.js';
 import Home from '../screens/Home/index.js';
 import SplashScreen from '../screens/SplashScreen/index.js';
 import Onboarding from '../screens/Onboarding.js/index.js';
+import { Login } from '../screens/Authentication/Login.js';
 
 const AuthStack = () => {
     const Stack = createStackNavigator();
