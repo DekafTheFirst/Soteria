@@ -1,12 +1,11 @@
-import { Dimensions } from "react-native"
-import EStyleSheet from "react-native-extended-stylesheet"
+import { Dimensions, StyleSheet } from "react-native"
 import { moderateScale } from "react-native-size-matters"
 
-export const styles = (background, text, lightGray5, primary, dark) => {
-    return EStyleSheet.create({
+
+export const createStyles = (colors) =>  StyleSheet.create({
         loginMain: {
             flex: 1,
-            backgroundColor: background,
+            backgroundColor: colors.background,
             paddingLeft: moderateScale(20),
             paddingRight: moderateScale(20)
         },
@@ -16,10 +15,10 @@ export const styles = (background, text, lightGray5, primary, dark) => {
         welcomeText: {
             fontSize: moderateScale(30),
             fontWeight: 'bold',
-            color: text
+            color: colors.text
         },
         signInText: {
-            color: lightGray5,
+            color: colors.text,
             fontSize: moderateScale(15),
             letterSpacing: 0.5,
             fontWeight: 'bold'
@@ -35,23 +34,33 @@ export const styles = (background, text, lightGray5, primary, dark) => {
         },
         input: {
             height: moderateScale(55),
-            color: text,
+            color: colors.text,
             borderWidth: moderateScale(1),
-            borderColor: lightGray5,
-            borderRadius: moderateScale(5),
+            borderColor: colors.text,
+            borderRadius: moderateScale(10),
             paddingHorizontal: moderateScale(10),
-            fontWeight: 'bold',
             display: 'flex',
             justifyContent: 'center',
             
+        },
+        inputWithIcon: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+        },
+        textInput: {
+            width: "90%"
         },
         forgotPasswordContainer: {
             alignItems: 'flex-end'
         },
         forgotPasswordText: {
-            fontSize: moderateScale(12)
+            fontSize: moderateScale(12),
+            color: colors.text,
         },
-        btnContainer: { 
+        btnContainer: {
+            borderRadius: 10,
+            backgroundColor: colors.gold, 
             marginTop: '10%',
         },
         footerContainer: {
@@ -66,13 +75,17 @@ export const styles = (background, text, lightGray5, primary, dark) => {
             flexDirection: 'row'
         },
 
+        newUserText : {
+            color: colors.text
+        },
+
         signText: {
             marginLeft: moderateScale(5),
-            color: dark ? text : primary,
+            color: colors.primary,
             fontWeight: "bold",
         }
 
 
     })
-}
+
     

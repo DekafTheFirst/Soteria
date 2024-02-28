@@ -1,26 +1,27 @@
 import { View, Text } from 'react-native'
 import React, { useEffect } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, ThemeProvider } from '@react-navigation/native'
 import AuthStack from './AuthStack'
 import Constant from '../constants'
 import axios from 'axios'
 import Constants from "../constants/"
-const {MyDarkTheme, MyLightTheme} = Constant; 
-
+import { lightTheme, darkTheme } from '../constants'
+import { useSettingsContext } from '../context/SettingsContext'
 const RootNavigation = () => {
-  const setUrlConfig = () => {
-    console.log('called setUrlConfig');
-    axios.defaults.baseURL = Constants.BASE_URL;
-  }
+  // const setUrlConfig = () => {
+  //   console.log('called setUrlConfig');
+  //   axios.defaults.baseURL = Constants.BASE_URL;
+  // }
 
-  useEffect(()=> {
-    setUrlConfig();
-  }, [])
-
+  // useEffect(()=> {
+  //   setUrlConfig();
+  // }, [])
+  const {settings} = useSettingsContext()
   return (
-    <NavigationContainer theme={MyLightTheme}>
-        <AuthStack />
+    <NavigationContainer theme={settings.darkMode ? darkTheme : lightTheme}>
+      <AuthStack />
     </NavigationContainer>
+
   )
 }
 

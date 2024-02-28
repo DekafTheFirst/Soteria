@@ -156,19 +156,6 @@ const Login = ({...props}) => {
     )
 }
 
-Login.propTypes = {
-    user: PropTypes.object.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
-    updateUserLogin: PropTypes.func.isRequired,
-    updateUserAccessToken: PropTypes.func.isRequired
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.auth.user,
-        isLoggedIn: state.auth.isLoggedIn
-    }
-}
 
 const mapDispatchToProps = (dispatch) => ({
     updateUserLogin: (user, isLoggedIn) => dispatch(updateUserLogin(user, isLoggedIn)),

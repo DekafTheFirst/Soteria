@@ -1,85 +1,38 @@
 import { DefaultTheme, DarkTheme } from "@react-navigation/native"
 
-export default {
-    asyncStorageKey: "Sotiera",
-    BASE_URL: "https://soteria-eb0b339ef250.herokuapp.com/",
-    THEME: {
-        primary: "#062743",
-        secondary: "#182952",
-
-        // colors
-        black: "#1E1F20",
-        white: "#FFFFFF",
-
-        lightGray: "#F5F5F6",
-        lightGray2: "#F6F6F7",
-        lightGray3: "#EFEFF1",
-        lightGray4: "#F8F8F9",
-        lightGray5: "#9ea9b3",
-    },
-    MyLightTheme: {
-        ...DefaultTheme,
-        dark: false,
-        colors: {
-            ...DefaultTheme.colors,
-            primary: "#062743",
-            secondary: "#182952",
-
-            // colors
-            black: "#1E1F20",
-            white: "#FFFFFF",
-
-            lightGray: "#F5F5F6",
-            lightGray2: "#F6F6F7",
-            lightGray3: "#EFEFF1",
-            lightGray4: "#F8F8F9",
-            lightGray5: "#9ea9b3",
-        }
-    },
-    MyDarkTheme: {
-        ...DarkTheme,
-        dark: true,
-        colors: {
-            ...DarkTheme.colors,
-            primary: "#062743",
-            secondary: "#182952",
-            card: '#1f1f1f',
-            black: "#1E1F20",
-            white: "#FFFFFF",
-
-            lightGray: "#F5F5F6",
-            lightGray2: "#F6F6F7",
-            lightGray3: "#EFEFF1",
-            lightGray4: "#F8F8F9",
-            lightGray5: "#9ea9b3",
-        },
+export const lightTheme = {
+    ...DefaultTheme, 
+    colors: {
+        ...DefaultTheme.colors, 
+        gold: "#A96F00",
+        green: "#214F0F",
+        toggleIcon: '#214F0F',
+        lightGreen: "#90EE90",
+        settingsIcon: '#000000',
+        lightBlue: " #A5C2DE",
+        greenOverlay: " #bdc1c6",
+        gray: '#BDC1C6',
+        offWhite: '#F5F6FA',
+        cardBackground: '#FFFFFF',
     }
 }
-// export default {
-//     asyncStorageKey: "Soteria001"
-// }
+
+export const darkTheme = {
+    ...DarkTheme, 
+    colors: {
+        ...DarkTheme.colors,
+        gold: "#A96F00",
+        green: "#214F0F",
+        settingsIcon: '#90EE90',
+        toggleIcon: '#90EE90',
+        lightGreen: "#90EE90",
+        lightBlue: " #A5C2DE",
+        cardBackground: '#1F1F1F',
+        background: '#121212',
+        greenOverlay: " #bdc1c6",
+        gray: '#BDC1C6',
+        offWhite: '#F5F6FA',
+    }
 
 
-// const MyLightTheme = {
-//     ...DefaultTheme,
-//     dark: false,
-//     colors: {
-
-//     }
-// }
-
-// const MyDarkTheme = {
-//     ...DarkTheme,
-//     dark: false,
-//     colors: {
-//         ...DarkTheme.colors,
-
-//         background: "#131314",
-//         gold: '#A96F00',
-//         green: "#214F0F",
-//         offWhite: "F5F6FA",
-//         lightBlue: "#A5C2DE",
-//         greyOverlay: "#bdc1c6",
-
-//     }
-// }
+}

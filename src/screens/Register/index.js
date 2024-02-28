@@ -1,12 +1,11 @@
 import { View, Text, ScrollView, TextInput, ActivityIndicator, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { styles } from './styles'
+import { styles } from '../Authentication/styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'; import { useNavigation, useTheme } from '@react-navigation/native';
 import { scale } from 'react-native-size-matters';
 import * as yup from 'yup'
 import { Formik } from 'formik';
-import { registerUser } from '../../api/Auth';
 // import { showSnackBar } from '../../utils/SnackBar';
 
 const signUpValidationForm = yup.object().shape({
@@ -55,30 +54,31 @@ const Register = () => {
                             email: '',
                             password: '',
                         }}
-                        onSubmit={(values) => {
-                            setShowSpinner(true)
-                            registerUser(values).then((res)=>{
-                                console.log(res);
-                                setShowSpinner(false);
-                                Alert.alert(
-                                    "",
-                                    res.msg,
-                                    [
-                                        {
-                                            text: 'Ok',
-                                            onPress: ()=> navigation.navigate('Login')
-                                        }
-                                    ]
+                        // onSubmit={(values) => {
+                        //     setShowSpinner(true)
+                        //     registerUser(values).then((res)=>{
+                        //         console.log(res);
+                        //         setShowSpinner(false);
+                        //         Alert.alert(
+                        //             "",
+                        //             res.msg,
+                        //             [
+                        //                 {
+                        //                     text: 'Ok',
+                        //                     onPress: ()=> navigation.navigate('Login')
+                        //                 }
+                        //             ]
                                     
-                                )
+                        //         )
 
-                            }).catch(err =>  {
-                                console.log(err.response.data?.msg)
-                                setShowSpinner(false);
-                                // showSnackBar(err.response.data?.msg, 'ERROR')
+                        //     }).catch(err =>  {
+                        //         console.log(err.response.data?.msg)
+                        //         setShowSpinner(false);
+                        //         // showSnackBar(err.response.data?.msg, 'ERROR')
 
-                            })
-                        }}>
+                        //     })
+                        // }}
+                        >
                         {({ handleSubmit, isValid, values, errors, handleChange, touched }) => (
                             <>
                                 <View style={styles().inputContainer}>
