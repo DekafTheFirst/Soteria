@@ -27,11 +27,12 @@ export const createStyles = (colors) => {
 
         },
         userNotificationsBtn: {
-            backgroundColor: "#fff",
+            backgroundColor: colors.card2Background,
             padding: 8,
             borderRadius: 10,
+            
             elevation: 3, // Elevation for Android shadow
-            shadowColor: '#000000', // Shadow color
+            shadowColor: colors.text, // Shadow color
             shadowOffset: { width: 0, height: 2 }, // Shadow offset
             shadowOpacity: 0.2, // Shadow opacity
             shadowRadius: 4,

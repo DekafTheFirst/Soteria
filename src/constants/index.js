@@ -12,8 +12,11 @@ export const lightTheme = {
         lightBlue: " #A5C2DE",
         greenOverlay: " #bdc1c6",
         gray: '#BDC1C6',
+        lightGray: '#EDEDED',
         offWhite: '#F5F6FA',
         cardBackground: '#FFFFFF',
+        card2Background: '#FFFFFF',
+
     }
 }
 
@@ -28,9 +31,11 @@ export const darkTheme = {
         lightGreen: "#90EE90",
         lightBlue: " #A5C2DE",
         cardBackground: '#1F1F1F',
+        card2Background: '#BDC1C6',
         background: '#121212',
         greenOverlay: " #bdc1c6",
         gray: '#BDC1C6',
+        lightGray: '#EDEDED',
         offWhite: '#F5F6FA',
     }
 

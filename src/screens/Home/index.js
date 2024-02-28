@@ -20,7 +20,7 @@ const Home = () => {
           <Image source={require('../../Assets/person.jpg')} style={styles.userAvatar} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.userNotificationsBtn}>
-          <FontAwesome name="bell-o" size={20} color="black" />
+          <FontAwesome name="bell-o" size={20} color='black' />
           <View style={styles.userNotificationsBtnRedDot}></View>
         </TouchableOpacity>
       </View>

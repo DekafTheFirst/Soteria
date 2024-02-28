@@ -7,6 +7,8 @@ import axios from 'axios'
 import Constants from "../constants/"
 import { lightTheme, darkTheme } from '../constants'
 import { useSettingsContext } from '../context/SettingsContext'
+import { useAuth } from '../context/AuthContext'
+import MainStack from './MainStack'
 const RootNavigation = () => {
   // const setUrlConfig = () => {
   //   console.log('called setUrlConfig');
@@ -17,9 +19,11 @@ const RootNavigation = () => {
   //   setUrlConfig();
   // }, [])
   const {settings} = useSettingsContext()
+  const {currentUser} =  useAuth()
+
   return (
     <NavigationContainer theme={settings.darkMode ? darkTheme : lightTheme}>
-      <AuthStack />
+      {currentUser ? <MainStack/> : <AuthStack/>}
     </NavigationContainer>
 
   )

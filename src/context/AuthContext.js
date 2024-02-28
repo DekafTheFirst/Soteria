@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut, getReactNativePersistence, initializeAuth, getAuth, updateProfile } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut, getReactNativePersistence, initializeAuth, getAuth, updateProfile, createUserWithEmailAndPassword } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { firebaseConfig } from "../../config";
 
@@ -23,9 +23,18 @@ export const AuthProvider = ({ children }) => {
 
     }, [auth]);
 
-    const register = async (email, password) => {
+    const register = async ({email, password, displayName}) => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            console.log('created successfully')
+
+            await updateProfile(user, { displayName });
+            console.log('updated successfully')
+
+            setCurrentUser(user);
+            console.log('current user set successfully')
+
         } catch (error) {
             console.error('Error registering user:', error);
             throw error;
@@ -36,18 +45,23 @@ export const AuthProvider = ({ children }) => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
         } catch (error) {
-            console.error('Error logging in:', error);
             throw error;
         }
     };
 
-    const updateProfile = async (updateData) => (auth.currentUser, {
-    displayName: "Dekaf", photoURL: ""
-    }).then((res) => {
-    console.log("Updated Succesffully", res)
-    }).catch((error) => {
-    console.log(error)
-    });
+    const updateUserProfile = async (displayName, photoURL) => {
+        try {
+            await currentUser.updateProfile({
+                displayName: displayName,
+                photoURL: photoURL
+            });
+
+            console.log('User profile updated successfully');
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const logout = async () => {
         try {
@@ -63,7 +77,7 @@ export const AuthProvider = ({ children }) => {
         currentUser,
         login,
         register,
-        updateProfile,
+        updateUserProfile,
         logout
     };
 

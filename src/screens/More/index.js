@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useEffect } from 'react'
 import { createStyles } from './styles'
 import { useNavigation, useTheme } from '@react-navigation/native'
@@ -30,7 +30,7 @@ const More = () => {
     );
   }
   return (
-    <View style={styles.moreContiner}>
+    <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
       <View style={styles.content}>
 
         {currentUser && (
@@ -38,9 +38,9 @@ const More = () => {
             <View>
               <Image source={require('../../Assets/person.jpg')} style={styles.profileImage} />
             </View>
-            <Text style={styles.name}>Jane Doe</Text>
+            <Text style={styles.name}>{currentUser.displayName}</Text>
             <Text style={styles.email}>{currentUser.email}</Text>
-            <TouchableOpacity style={styles.editProfileBtn}><Text style={styles.editProfileBtnText}>Edit Profile</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.editProfileBtn} onPress={()=>navigation.navigate('EditProfile')}><Text style={styles.editProfileBtnText}>Edit Profile</Text></TouchableOpacity>
           </>
         )}
 
@@ -107,7 +107,7 @@ const More = () => {
       </View>
 
 
-    </View>
+    </ScrollView>
   )
 }
 

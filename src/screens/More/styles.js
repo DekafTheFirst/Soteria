@@ -5,10 +5,9 @@ import { StyleSheet } from "react-native";
 export const createStyles = (colors) => {
    
     return (StyleSheet.create({
-        moreContiner: {
+        container: {
             flex: 1,
-            alignItems: "center",
-            marginTop: 50,
+            paddingTop: 50
         },
         content: {
             alignItems: 'center',

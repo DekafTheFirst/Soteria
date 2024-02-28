@@ -1,15 +1,15 @@
 import { View, Text, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { Ionicons } from '@expo/vector-icons'; import { useNavigation, useTheme } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'; 
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { scale } from 'react-native-size-matters';
 import * as yup from 'yup'
 import { Formik } from 'formik';
 // import { showSnackBar } from '../../utils/SnackBar';
-
-import { setTokenInterceptor } from '../../utils/setTokenInterceptor';
 import { createStyles } from './styles';
 import { useAuth } from '../../context/AuthContext';
+import ErrorMessage from '../../components/ErrorMessage';
 const signInValidationSchema = yup.object().shape({
     email: yup
         .string()
@@ -19,11 +19,13 @@ const signInValidationSchema = yup.object().shape({
     password: yup.string().required('Password is required.')
 })
 
-export const Login = () => {
+export  default Login = () => {
     const navigation = useNavigation();
 
     const [showSpinner, setShowSpinner] = useState(false);
     const [showPassword, setShowPassword] = useState(false)
+    const [error, setError] = useState(null)
+
 
     const { colors } = useTheme();
     const styles = createStyles(colors)
@@ -39,6 +41,7 @@ export const Login = () => {
                 </View>
 
                 <View style={styles.formContainer}>
+                    {error && <ErrorMessage error={error} />}
                     <Formik
                         validationSchema={signInValidationSchema}
                         initialValues={{ email: '', password: "" }}
@@ -47,10 +50,8 @@ export const Login = () => {
                             login(values.email, values.password).then((res) => {
                                 navigation.navigate('Tabs')
                                 setShowSpinner(false);
-
-
                             }).catch(err => {
-                                console.log(err.response.data?.msg)
+                                setError(err)
                                 setShowSpinner(false);
                             })
                         }}>
@@ -63,6 +64,7 @@ export const Login = () => {
                                         <TextInput
                                             style={styles.input}
                                             placeholder='Enter Email'
+                                            placeholderTextColor={colors.text}
                                             keyboardType='email-address'
                                             name="email"
                                             onChangeText={handleChange('email')}
@@ -75,13 +77,14 @@ export const Login = () => {
                                             <TextInput
                                                 placeholder='Enter Password'
                                                 secureTextEntry={!showPassword}
+                                                placeholderTextColor={colors.text}
                                                 name="password"
                                                 onChangeText={handleChange('password')}
                                                 style={styles.textInput}
                                             />
 
                                             <TouchableOpacity onPress={() => setShowPassword(prevState => !prevState)}>
-                                                <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color="black" />
+                                                <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color={colors.text} />
                                             </TouchableOpacity>
                                         </View>
                                         {(errors.email && touched.email) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>}
@@ -130,7 +133,7 @@ export const Login = () => {
                     </View>
 
                     <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
-                        <Text style={{ color: colors.gray }}>
+                        <Text style={styles.skip}>
                             Skip
                         </Text>
                     </TouchableOpacity>

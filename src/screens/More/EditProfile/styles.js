@@ -1,25 +1,51 @@
-import { Dimensions, StyleSheet } from "react-native"
-import { moderateScale } from "react-native-size-matters"
+import { Dimensions, StyleSheet } from "react-native";
 
-
-export const createStyles = (colors) => StyleSheet.create({
-    loginMain: {
+export const createStyles = (colors) => (StyleSheet.create({
+    container: {
         flex: 1,
-        backgroundColor: colors.background,
-        paddingLeft: moderateScale(20),
-        paddingRight: moderateScale(20)
+        paddingTop: 50
     },
-    headerContainer: {
-        height: Dimensions.get('window').height / 4, justifyContent: 'center'
+    content: {
+        alignItems: 'center',
+        gap: 5,
+        width: "100%"
     },
+    profileImage: {
+        width: 110,
+        height: 110,
+        borderRadius: '50%'
+    },
+    profileImageWrapper: {
+        alignItems: 'center'
+    },
+    cameraIconWrapper: {
+        position: 'absolute',
+        right: 0,
+        top: -13,
+        backgroundColor: colors.cardBackground,
+        padding: 9,
+        borderRadius: "50%",
+        elevation: 3, // Elevation for Android shadow
+        shadowColor: '#000000', // Shadow color
+        shadowOffset: { width: 0, height: 2 }, // Shadow offset
+        shadowOpacity: 0.2, // Shadow opacity
+        shadowRadius: 4,
+    },
+
+    profileDetails: {
+        width: '100%',
+        padding: 15
+    }, 
+
+
     welcomeText: {
-        fontSize: moderateScale(30),
+        fontSize: 30,
         fontWeight: 'bold',
         color: colors.text
     },
     signInText: {
         color: colors.text,
-        fontSize: moderateScale(15),
+        fontSize: 15,
         letterSpacing: 0.5,
         fontWeight: 'bold'
     },
@@ -33,13 +59,13 @@ export const createStyles = (colors) => StyleSheet.create({
         marginBottom: 20,
     },
     input: {
-        height: moderateScale(55),
+        height: 55,
         color: colors.text,
         backgroundColor: colors.cardBackground,
-        borderWidth: moderateScale(1),
-        borderColor: colors.text,
-        borderRadius: moderateScale(10),
-        paddingHorizontal: moderateScale(10),
+        borderWidth: 1,
+        borderColor: colors.gray,
+        borderRadius: 10,
+        paddingHorizontal: 10,
         display: 'flex',
         justifyContent: 'center',
 
@@ -57,7 +83,7 @@ export const createStyles = (colors) => StyleSheet.create({
         alignItems: 'flex-end'
     },
     forgotPasswordText: {
-        fontSize: moderateScale(12),
+        fontSize: 12,
         color: colors.text,
     },
     btnContainer: {
@@ -82,7 +108,7 @@ export const createStyles = (colors) => StyleSheet.create({
     },
 
     signText: {
-        marginLeft: moderateScale(5),
+        marginLeft: 5,
         color: colors.primary,
         fontWeight: "bold",
     },
@@ -90,8 +116,4 @@ export const createStyles = (colors) => StyleSheet.create({
         color: colors.gold,
         marginTop: 5,
     },
-
-
-})
-
-
+}))
