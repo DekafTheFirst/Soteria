@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 import { useSettingsContext } from '../context/SettingsContext';
-import { createStyles } from '../screens/More/styles';
+import { createStyles } from '../screens/More/Options/styles';
 
 
 
@@ -33,7 +33,7 @@ const Option = ({ name, icon }) => {
             onPress={()=> updateSettings(name)}
             style={styles.optionItemToggle}
             >
-                <FontAwesome6 name={settings[name] ? "toggle-on" : "toggle-off"} size={30}  color={colors.toggleIcon} />
+                <FontAwesome6 name={settings[name] ? "toggle-on" : "toggle-off"} size={30}  color={colors.color1} />
             </TouchableOpacity>
         </View>
     )

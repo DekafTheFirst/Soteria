@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { scale } from 'react-native-size-matters';
 import * as yup from 'yup'
@@ -10,6 +10,7 @@ import { Formik } from 'formik';
 import { createStyles } from './styles';
 import { useAuth } from '../../context/AuthContext';
 import ErrorMessage from '../../components/ErrorMessage';
+import Input from '../../components/Input';
 const signInValidationSchema = yup.object().shape({
     email: yup
         .string()
@@ -19,7 +20,7 @@ const signInValidationSchema = yup.object().shape({
     password: yup.string().required('Password is required.')
 })
 
-export  default Login = () => {
+export default Login = () => {
     const navigation = useNavigation();
 
     const [showSpinner, setShowSpinner] = useState(false);
@@ -60,36 +61,20 @@ export  default Login = () => {
                         }) => (
                             <>
                                 <View style={styles.inputContainer}>
-                                    <View style={styles.wrapper}>
-                                        <TextInput
-                                            style={styles.input}
-                                            placeholder='Enter Email'
-                                            placeholderTextColor={colors.text}
-                                            keyboardType='email-address'
-                                            name="email"
-                                            onChangeText={handleChange('email')}
-
-                                        />
-                                        {(errors.email && touched.email) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>}
-                                    </View>
-                                    <View style={styles.wrapper}>
-                                        <View style={[styles.input, styles.inputWithIcon]}>
-                                            <TextInput
-                                                placeholder='Enter Password'
-                                                secureTextEntry={!showPassword}
-                                                placeholderTextColor={colors.text}
-                                                name="password"
-                                                onChangeText={handleChange('password')}
-                                                style={styles.textInput}
-                                            />
-
-                                            <TouchableOpacity onPress={() => setShowPassword(prevState => !prevState)}>
-                                                <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color={colors.text} />
-                                            </TouchableOpacity>
-                                        </View>
-                                        {(errors.email && touched.email) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>}
-                                    </View>
-
+                                    <Input inputProps={{ placeHolder: "Enter Email", name: 'email', handleChange, errors, touched, keyboardType: 'email-address' }} ></Input>
+                                    <Input inputProps={{
+                                        placeHolder: "Enter Password", 
+                                        name: 'password', 
+                                        handleChange, 
+                                        errors, 
+                                        touched, 
+                                        secureTextEntry: showPassword, 
+                                        toggleIcon: (
+                                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                                            <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color={colors.text} />
+                                        </TouchableOpacity>
+                                        )
+                                    }} ></Input>
                                     <View style={styles.forgotPasswordContainer}>
                                         <TouchableOpacity>
                                             <Text style={styles.forgotPasswordText}>
@@ -103,7 +88,7 @@ export  default Login = () => {
                                     <TouchableOpacity
                                         onPress={handleSubmit}
                                         style={{
-                                            backgroundColor: colors.gold,
+                                            backgroundColor: colors.green,
                                             height: scale(50),
                                             borderRadius: scale(10), flexDirection: 'row', justifyContent: 'center', alignItems: 'center'
                                         }}>

@@ -68,6 +68,7 @@ const Register = () => {
                                 displayName: values.name,
                             }).then(()=>{
                             setShowSpinner(false);
+                            navigation.navigate('Tabs')
                             // Alert.alert(
                             //     "",
                             //     res.msg,

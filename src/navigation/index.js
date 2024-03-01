@@ -22,7 +22,7 @@ const RootNavigation = () => {
   const {currentUser} =  useAuth()
 
   return (
-    <NavigationContainer theme={settings.darkMode ? darkTheme : lightTheme}>
+    <NavigationContainer theme={ settings.darkMode ? darkTheme: lightTheme}>
       {currentUser ? <MainStack/> : <AuthStack/>}
     </NavigationContainer>
 

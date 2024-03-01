@@ -62,7 +62,6 @@ export const createStyles = (colors) => StyleSheet.create({
     },
     btnContainer: {
         borderRadius: 10,
-        backgroundColor: colors.gold,
         marginTop: '10%',
     },
     footerContainer: {

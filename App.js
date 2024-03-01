@@ -10,6 +10,7 @@ import { AuthProvider } from './src/context/AuthContext';
 import { RobotoSlab_700Bold, useFonts } from '@expo-google-fonts/roboto-slab';
 import { SettingsContext, SettingsProvider, useSettingsContext } from './src/context/SettingsContext';
 import { useContext } from 'react';
+import Toast from 'react-native-toast-message';
 
 export const firebaseApp = initializeApp(firebaseConfig);
 
@@ -31,6 +32,7 @@ export default function App() {
       <SettingsProvider>
           <RootNavigation />
       </SettingsProvider>
+      <Toast/>
     </AuthProvider>
 
   );

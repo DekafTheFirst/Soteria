@@ -3,7 +3,8 @@ import { Dimensions, StyleSheet } from "react-native";
 export const createStyles = (colors) => (StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 50
+        paddingTop: 50,
+        backgroundColor: colors.background
     },
     content: {
         alignItems: 'center',
@@ -22,7 +23,7 @@ export const createStyles = (colors) => (StyleSheet.create({
         position: 'absolute',
         right: 0,
         top: -13,
-        backgroundColor: colors.cardBackground,
+        backgroundColor: colors.card2Background,
         padding: 9,
         borderRadius: "50%",
         elevation: 3, // Elevation for Android shadow
@@ -34,7 +35,8 @@ export const createStyles = (colors) => (StyleSheet.create({
 
     profileDetails: {
         width: '100%',
-        padding: 15
+        padding: 15,
+        marginTop: 30
     }, 
 
 
@@ -55,36 +57,13 @@ export const createStyles = (colors) => (StyleSheet.create({
     inputContainer: {
         paddingHorizontal: 2,
     },
-    wrapper: {
-        marginBottom: 20,
-    },
-    input: {
-        height: 55,
-        color: colors.text,
-        backgroundColor: colors.cardBackground,
-        borderWidth: 1,
-        borderColor: colors.gray,
-        borderRadius: 10,
-        paddingHorizontal: 10,
-        display: 'flex',
-        justifyContent: 'center',
-
-    },
-    inputWithIcon: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    textInput: {
-        width: "90%",
-        color: colors.text
-    },
+    
     forgotPasswordContainer: {
         alignItems: 'flex-end'
     },
     forgotPasswordText: {
         fontSize: 12,
-        color: colors.text,
+        color: colors.color1,
     },
     btnContainer: {
         borderRadius: 10,

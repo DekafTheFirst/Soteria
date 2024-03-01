@@ -137,7 +137,6 @@ export const createStyles = (colors) => {
             width: "100%",
             position: "absolute",
             backgroundColor: 'rgba(0, 0, 0, 0.2)',
-
         },
 
 

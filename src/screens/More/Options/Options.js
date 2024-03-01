@@ -6,8 +6,8 @@ import { Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-ic
 import { Image } from 'expo-image';
 import { useFonts, RobotoSlab_700Bold } from '@expo-google-fonts/roboto-slab';
 import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
-import { useAuth } from '../../context/AuthContext';
-import Option from '../../components/Option';
+import { useAuth } from '../../../context/AuthContext';
+import Option from '../../../components/Option';
 
 
 
@@ -18,35 +18,36 @@ const More = () => {
   const { currentUser, logout } = useAuth()
   const navigation = useNavigation()
 
+  
+
 
   const options = [
     { name: 'notifications', icon: <FontAwesome name="bell-o" size={20} style={styles.icon} /> },
     { name: 'darkMode', icon: <MaterialIcons name="dark-mode" size={20} style={styles.icon} /> },
-
   ]
 
-  const onLogout = () => {
-    logout().then(() => navigation.navigate('Home')
+  const onLogout = async () => {
+    logout()
+    .then(() => navigation.navigate('Home')
     );
   }
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
       <View style={styles.content}>
-
         {currentUser && (
           <>
             <View>
-              <Image source={require('../../Assets/person.jpg')} style={styles.profileImage} />
+              <Image source={require('../../../Assets/person.jpg')} style={styles.profileImage} />
             </View>
             <Text style={styles.name}>{currentUser.displayName}</Text>
             <Text style={styles.email}>{currentUser.email}</Text>
-            <TouchableOpacity style={styles.editProfileBtn} onPress={()=>navigation.navigate('EditProfile')}><Text style={styles.editProfileBtnText}>Edit Profile</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.editProfileBtn} onPress={() => navigation.navigate('Edit Profile')}><Text style={styles.editProfileBtnText}>Edit Profile</Text></TouchableOpacity>
           </>
         )}
 
         <View style={styles.settings}>
           <View style={styles.options}>
-            <Text style={{ color: colors.toggleIcon, fontWeight: '700' }}>OPTIONS</Text>
+            <Text style={{ color: colors.color1, fontWeight: '700' }}>OPTIONS</Text>
             {options.map((option, index) => <Option key={index} name={option.name} icon={option.icon} />)}
 
             {/* <View style={styles.option}>
@@ -59,7 +60,7 @@ const More = () => {
           </View>
 
           <View style={styles.support}>
-            <Text style={{ color: colors.toggleIcon, fontWeight: '700' }}>SUPPORT</Text>
+            <Text style={{ color: colors.color1, fontWeight: '700' }}>SUPPORT</Text>
             <TouchableOpacity style={styles.item}>
               <View style={styles.iconWrapper}>
                 <MaterialIcons name="question-answer" size={20} style={styles.icon} />
@@ -83,16 +84,23 @@ const More = () => {
                 </View>
                 <Text style={styles.title}>Logout</Text>
               </TouchableOpacity>
-            </View>
-          ): (
-            <View style={styles.logout}>
-              <TouchableOpacity onPress={()=> navigation.navigate('Login')} style={styles.logoutBtn}>
+              <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.logoutBtn}>
                 <View style={styles.iconWrapper}>
                   <MaterialCommunityIcons name="logout" size={20} color={colors.settingsIcon} />
                 </View>
                 <Text style={styles.title}>Sign In</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={()=> navigation.navigate('Register')} style={styles.logoutBtn}>
+            </View>
+
+          ) : (
+            <View style={styles.logout}>
+              <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.logoutBtn}>
+                <View style={styles.iconWrapper}>
+                  <MaterialCommunityIcons name="logout" size={20} color={colors.settingsIcon} />
+                </View>
+                <Text style={styles.title}>Sign In</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.logoutBtn}>
                 <View style={styles.iconWrapper}>
                   <MaterialCommunityIcons name="logout" size={20} color={colors.settingsIcon} />
                 </View>

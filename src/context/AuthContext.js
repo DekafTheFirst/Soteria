@@ -10,29 +10,43 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
+    const [isLoggedOut, setIsLoggedOut] = useState(false);
+
     const [loading, setLoading] = useState(true);
     const auth = getAuth()
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
-            setCurrentUser(user);
-            setLoading(false);
+            if (user) {
+                // User is signed in
+                setCurrentUser(user);
+                setLoading(false);
+              } else {
+                // User is signed out
+                setCurrentUser(null);
+                setLoading(false);
+              }
+
+
         })
 
         return () => unsubscribe();
 
     }, [auth]);
 
-    const register = async ({email, password, displayName}) => {
+
+    const register = async ({ email, password, displayName }) => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log('created successfully')
 
-            await updateProfile(user, { displayName });
+            await updateProfile(user, { displayName, member: false });
             console.log('updated successfully')
 
             setCurrentUser(user);
+            setIsLoggedOut(false);
+
             console.log('current user set successfully')
 
         } catch (error) {
@@ -44,28 +58,27 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            setIsLoggedOut(false);
         } catch (error) {
             throw error;
         }
     };
 
-    const updateUserProfile = async (displayName, photoURL) => {
+    const updateUserProfile = async (updates) => {
         try {
-            await currentUser.updateProfile({
-                displayName: displayName,
-                photoURL: photoURL
-            });
-
-            console.log('User profile updated successfully');
-
-        } catch (error) {
+            await updateProfile(auth.currentUser, updates)
+            setCurrentUser({ ...currentUser, displayName: updates.displayName })
+        }
+        catch (error) {
             console.log(error)
         }
+
     }
 
     const logout = async () => {
         try {
             await signOut(auth);
+            setIsLoggedOut(true);
         } catch (error) {
             console.error('Error logging out:', error);
             throw error;
@@ -78,6 +91,7 @@ export const AuthProvider = ({ children }) => {
         login,
         register,
         updateUserProfile,
+        setCurrentUser,
         logout
     };
 

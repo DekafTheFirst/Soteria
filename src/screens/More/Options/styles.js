@@ -7,12 +7,14 @@ export const createStyles = (colors) => {
     return (StyleSheet.create({
         container: {
             flex: 1,
-            paddingTop: 50
+            paddingTop: 50,
         },
         content: {
             alignItems: 'center',
             gap: 5,
-            width: "100%"
+            width: "100%",
+            paddingBottom: 100
+
         },
         profileImage: {
             width: 110,
@@ -74,7 +76,7 @@ export const createStyles = (colors) => {
             alignItems: 'center'
         },
         icon :{ 
-            color: colors.settingsIcon
+            color: colors.color1
         },
         optionItemToggle: {
             marginLeft: 'auto',
