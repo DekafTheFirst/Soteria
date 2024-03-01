@@ -7,7 +7,7 @@ import { firebaseConfig } from './config';
 import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthProvider } from './src/context/AuthContext';
-import { RobotoSlab_700Bold, useFonts } from '@expo-google-fonts/roboto-slab';
+import { RobotoSlab_700Bold, RobotoSlab_500Medium, RobotoSlab_400Regular, useFonts } from '@expo-google-fonts/roboto-slab';
 import { SettingsContext, SettingsProvider, useSettingsContext } from './src/context/SettingsContext';
 import { useContext } from 'react';
 import Toast from 'react-native-toast-message';
@@ -21,6 +21,8 @@ export const auth = initializeAuth(firebaseApp, {
 export default function App() {
   let [fontsLoaded] = useFonts({
     RobotoSlab_700Bold: RobotoSlab_700Bold,
+    RobotoSlab_500Medium, 
+    RobotoSlab_400Regular
   });
 
   if (!fontsLoaded) {
