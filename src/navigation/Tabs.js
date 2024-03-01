@@ -3,7 +3,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Home from '../screens/Home/Home';
 import { Feather, Ionicons } from '@expo/vector-icons';
-import Connect from '../screens/Connect/Connect';
+import Connect from '../screens/Connect/Connect/Connect';
 import Media from '../screens/Media/Media';
 import More from '../screens/More/Options/Options';
 import { moderateScale } from 'react-native-size-matters';

@@ -87,47 +87,6 @@ const EditProfile = () => {
                       <Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), handleChange, errors, touched }} ></Input>
 
                     ))}
-                    {/* <View style={styles.wrapper}>
-                      <Text style={styles.inputTitle}>User Name: </Text>
-                  
-                      <TextInput
-                        style={styles.input}
-                        placeholder={currentUser.displayName}
-                        placeholderTextColor={colors.gray}
-                        name="displayName"
-                        onChangeText={handleChange('email')}
-                      />
-                      {(errors.email && touched.email) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>}
-                    </View>
-                    <View style={styles.wrapper}>
-                      <TextInput
-                        style={styles.input}
-                        placeholder={currentUser.email}
-                        placeholderTextColor={colors.text}
-                        keyboardType='email-address'
-                        name="email"
-                        onChangeText={handleChange('email')}
-
-                      />
-                      {(errors.email && touched.email) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>}
-                    </View> */}
-                    {/* <View style={styles.wrapper}>
-                      <View style={[styles.input, styles.inputWithIcon]}>
-                        <TextInput
-                          placeholder='Enter Password'
-                          placeholderTextColor={colors.text}
-                          name="password"
-                          onChangeText={handleChange('password')}
-                          style={styles.textInput}
-                        />
-
-                        <TouchableOpacity onPress={{}}>
-                          <Ionicons name='calendar' size={20} color={colors.green} />
-                        </TouchableOpacity>
-                      </View>
-                      {(errors.email && touched.email) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>}
-                    </View> */}
-
                     <View style={styles.forgotPasswordContainer}>
                       <TouchableOpacity>
                         <Text style={styles.forgotPasswordText}>

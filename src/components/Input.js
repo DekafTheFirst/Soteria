@@ -24,6 +24,7 @@ export default Input = ({ inputProps }) => {
                     placeholder={inputProps.placeHolder}
                     placeholderTextColor={inputProps.disabled ? 'white' : colors.gray}
                     name={inputProps.name}
+                    value={inputProps.initialValue}
                     onChangeText={inputProps.handleChange(inputProps.name)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}

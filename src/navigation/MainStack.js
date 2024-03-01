@@ -8,15 +8,19 @@ import UpdateProfile from '../screens/More/EditProfile/EditProfile.js';
 import EditProfile from '../screens/More/EditProfile/EditProfile.js';
 import Login from '../screens/Authentication/Login.js';
 import AuthStack from './AuthStack.js';
+import SODIP from '../screens/Connect/SODIP/SODIP.js';
 
 const MainStack = () => {
     const Stack = createStackNavigator();
     return (
-        <Stack.Navigator initialRouteName='EditProfile' screenOptions={{headerShown: false, headerBackTitle: false}}>
+        <Stack.Navigator initialRouteName='EditProfile' screenOptions={{ headerShown: false, headerBackTitle: false }}>
             <Stack.Screen name="Tabs" component={Tabs} />
             <Stack.Screen options={{
                 headerShown: true,
             }} name="Edit Profile" component={EditProfile} />
+            <Stack.Screen options={{
+                headerShown: true,
+            }} name="SODIP" component={SODIP} />
             <Stack.Screen name="AuthStack" component={AuthStack} />
             <Stack.Screen name="EventDetails" component={EventDetails} />
             <Stack.Screen name="About" component={About} />

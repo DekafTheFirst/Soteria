@@ -6,7 +6,6 @@ import About from '../screens/About/About.js';
 import EventDetails from '../screens/EventDetails/EventDetails.js';
 import Home from '../screens/Home/Home.js';
 import SplashScreen from '../screens/SplashScreen/SplashScreen.js';
-import Onboarding from '../screens/Onboarding.js/index.js';
 import Login  from '../screens/Authentication/Login.js';
 import Register  from '../screens/Authentication/Register.js';
 
@@ -22,7 +21,6 @@ const AuthStack = () => {
             <Stack.Screen name="Splash" component={SplashScreen} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Onboarding" component={Onboarding} />
             <Stack.Screen name="EventDetails" component={EventDetails} />
             <Stack.Screen name="About" component={About} />
         </Stack.Navigator>

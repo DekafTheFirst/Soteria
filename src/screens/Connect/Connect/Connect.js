@@ -2,8 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import { ImageBackground } from 'expo-image'
 import { useNavigation, useTheme } from '@react-navigation/native';
-import { useAuth } from '../../context/AuthContext';
-import { FontAwesome, AntDesign } from '@expo/vector-icons';
+import { useAuth } from '../../../context/AuthContext';
 import { createStyles } from './styles';
 
 
@@ -17,10 +16,12 @@ const Connect = () => {
   return (
     <ScrollView style={styles.container}>
       {!currentUser.member ? (
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity onPress={()=>{
+          navigation.navigate('SODIP')
+        }}style={styles.card}>
           <View style={styles.darkOverlay}></View>
           <ImageBackground
-            source={require('../../Assets/abstract-5.jpg')}
+            source={require('../../../Assets/abstract-5.jpg')}
             resizeMethod='scale'
             style={styles.imageBackground}
           >
@@ -33,7 +34,7 @@ const Connect = () => {
         <TouchableOpacity style={styles.card}>
           <View style={styles.darkOverlay}></View>
           <ImageBackground
-            source={require('../../Assets/abstract-1.jpg')}
+            source={require('../../../Assets/abstract-1.jpg')}
             resizeMethod='scale'
             style={styles.imageBackground}
           >
@@ -48,7 +49,7 @@ const Connect = () => {
       <TouchableOpacity style={styles.card}>
         <View style={styles.darkOverlay}></View>
         <ImageBackground
-          source={require('../../Assets/abstract-2.jpg')}
+          source={require('../../../Assets/abstract-2.jpg')}
           resizeMethod='scale'
           style={styles.imageBackground}
         >
@@ -62,7 +63,7 @@ const Connect = () => {
       <TouchableOpacity style={styles.card}>
         <View style={styles.darkOverlay}></View>
         <ImageBackground
-          source={require('../../Assets/abstract-4.jpg')}
+          source={require('../../../Assets/abstract-4.jpg')}
           resizeMethod='scale'
           style={styles.imageBackground}
         >
