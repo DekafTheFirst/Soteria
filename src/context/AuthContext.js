@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
             if (user) {
                 // User is signed in
                 setCurrentUser(user);
-                console.log(user)
                 setLoading(false);
               } else {
                 // User is signed out

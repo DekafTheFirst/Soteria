@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import { useSettings } from '../context/SettingsContext';
+import PhoneInput from 'react-native-phone-number-input';
 
 export default Input = ({ inputProps }) => {
     const { colors } = useTheme();
@@ -14,31 +15,62 @@ export default Input = ({ inputProps }) => {
     return (
         <View style={[styles.wrapper]}>
             {inputProps.title && <Text style={styles.inputTitle}>{inputProps.title}</Text>}
-            <View style={[
-                styles.input,
-                inputProps.disabled && styles.disabledInput,
-                inputProps.icon && styles.inputWithIcon,
-                inputProps.toggleIcon && styles.inputWithIcon
-            ]}>
-                <TextInput
-                    placeholder={inputProps.placeHolder}
-                    placeholderTextColor={inputProps.disabled ? 'white' : colors.gray}
-                    name={inputProps.name}
-                    value={inputProps.initialValue}
-                    onChangeText={inputProps.handleChange(inputProps.name)}
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
-                    style={[styles.textInput]}
-                    editable={!inputProps.disabled}
-                    keyboardType={inputProps.keyboardType}
-                    secureTextEntry={inputProps.secureTextEntry}
 
+            {inputProps.name === 'phoneNumber' ? (
+                <PhoneInput
+                    containerStyle={styles.phoneNumberInput}
+                    // codeTextStyle={{ color: colors.text }}
+                    // placeholder={{
+                    //     color: inputProps.disabled ? 'white' : colors.gray
+                    // }}
+                    textInputStyle= {{color: colors.text, verticalAlign: 'middle'}}
+                    // textContainerStyle={{
+                    //     backgroundColor: colors.cardBackground,
+                    // }}
+                    onChangeFormattedText={(phoneNumber) => {
+                        inputProps.handleChange(inputProps.name)
+                    }}
+                    defaultCode='US'
+                    name={inputProps.name}
                 />
-                <View style={styles.icon}>
-                    {inputProps.icon}
-                    {inputProps.toggleIcon}
+            ) : (
+                <View style={[
+                    styles.input,
+                    inputProps.disabled && styles.disabledInput,
+                    inputProps.icon && styles.inputWithIcon,
+                    inputProps.toggleIcon && styles.inputWithIcon
+                ]}>
+                    <TextInput
+                        placeholder={inputProps.placeHolder}
+                        placeholderTextColor={inputProps.disabled ? 'white' : colors.gray}
+                        name={inputProps.name}
+                        value={inputProps.initialValue}
+                        onChangeText={inputProps.handleChange(inputProps.name)}
+                        onFocus={() => setFocused(true)}
+                        onBlur={() => setFocused(false)}
+                        style={[styles.textInput]}
+                        editable={!inputProps.disabled}
+                        keyboardType={inputProps.keyboardType}
+                        secureTextEntry={inputProps.secureTextEntry}
+                    />
+                    {inputProps.toggleIcon && (
+                        <View style={styles.icon}>
+                            {inputProps.toggleIcon}
+                        </View>
+                    )
+                    }
+                    {inputProps.icon && (
+                        <View style={styles.icon}>
+                            {inputProps.icon}
+                        </View>
+                    )
+                    }
+
                 </View>
-            </View>
+            )
+            }
+
+
             {(inputProps.errors[inputProps.name] && inputProps.touched[inputProps.name]) && <Text style={{ fontSize: 10, color: 'red' }}>{inputProps.errors[inputProps.name]}</Text>}
         </View>
     )
@@ -60,6 +92,7 @@ const createStyles = (colors, focused) => (StyleSheet.create({
     },
     input: {
         height: 55,
+        width: "100%",
         color: colors.text,
         backgroundColor: colors.cardBackground,
         borderWidth: 1,
@@ -78,8 +111,17 @@ const createStyles = (colors, focused) => (StyleSheet.create({
         paddingLeft: 10,
         height: '100%',
         width: "90%",
+
         fontWeight: '500',
         color: colors.text
+    },
+    phoneNumberInput: {
+        borderWidth: 1,
+        borderColor: focused ? colors.color1 : colors.gray,
+        width: "100%",
+        borderRadius: 10,
+        overflow: 'hidden',
+
     },
     icon: {
         marginRight: 10,

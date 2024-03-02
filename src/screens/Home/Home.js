@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
 import React, { useEffect } from 'react'
 import { createStyles, styles } from './styles'
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
-import { useTheme } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Image } from 'expo-image';
 
@@ -11,6 +11,7 @@ const Home = () => {
   //   fetchEvents()
   // },[])
   const { colors } = useTheme();
+  const navigation = useNavigation()
   
   const styles = createStyles(colors)
   return (
@@ -78,7 +79,7 @@ const Home = () => {
 
             </View>
             <View style={[styles.featuredContentWrapper, styles.connectWrapper]}>
-              <TouchableOpacity style={styles.connect}>
+              <TouchableOpacity style={styles.connect} onPress={()=>navigation.navigate('SODIP')}>
 
                 <Image
                   source={require('../../Assets/abstract-6.jpg')}
