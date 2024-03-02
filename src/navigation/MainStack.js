@@ -8,7 +8,7 @@ import UpdateProfile from '../screens/More/EditProfile/EditProfile.js';
 import EditProfile from '../screens/More/EditProfile/EditProfile.js';
 import Login from '../screens/Authentication/Login.js';
 import AuthStack from './AuthStack.js';
-import SODIP from '../screens/Connect/SODIP/SODIP.js';
+import SODIP from '../screens/Connect/Sodip/Sodip.js';
 
 const MainStack = () => {
     const Stack = createStackNavigator();

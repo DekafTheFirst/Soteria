@@ -41,9 +41,10 @@ const SODIP = () => {
         <KeyboardAvoidingView 
         style={styles.container} 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <SodipCard />
+
                 <View style={styles.textWrapper}>
                     <Text style={{ color: colors.text }}>If you would like to go through the Soteria
                         Discipleship Program</Text>

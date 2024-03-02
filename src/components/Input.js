@@ -23,13 +23,11 @@ export default Input = ({ inputProps }) => {
                     // placeholder={{
                     //     color: inputProps.disabled ? 'white' : colors.gray
                     // }}
-                    textInputStyle= {{color: colors.text, verticalAlign: 'middle'}}
-                    // textContainerStyle={{
-                    //     backgroundColor: colors.cardBackground,
-                    // }}
-                    onChangeFormattedText={(phoneNumber) => {
-                        inputProps.handleChange(inputProps.name)
+                    textInputStyle={{ color: colors.text, verticalAlign: 'middle', height: '100%' }}
+                    textContainerStyle={{
+                        height: '100%'
                     }}
+                    onChangeFormattedText={inputProps.handleChange(inputProps.name)}
                     defaultCode='US'
                     name={inputProps.name}
                 />
@@ -79,7 +77,7 @@ export default Input = ({ inputProps }) => {
 const createStyles = (colors, focused) => (StyleSheet.create({
     wrapper: {
         marginBottom: 20,
-
+        width: '100%'
     },
     inputTitle: {
         color: colors.text,
@@ -102,6 +100,16 @@ const createStyles = (colors, focused) => (StyleSheet.create({
         justifyContent: 'center',
         overflow: 'hidden',
     },
+    phoneNumberInput: {
+        height: 55,
+        borderWidth: 1,
+        borderColor: focused ? colors.color1 : colors.gray,
+        width: "100%",
+        borderRadius: 10,
+        overflow: 'hidden',
+        justifyContent: 'center',
+    },
+    
     inputWithIcon: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -115,14 +123,7 @@ const createStyles = (colors, focused) => (StyleSheet.create({
         fontWeight: '500',
         color: colors.text
     },
-    phoneNumberInput: {
-        borderWidth: 1,
-        borderColor: focused ? colors.color1 : colors.gray,
-        width: "100%",
-        borderRadius: 10,
-        overflow: 'hidden',
-
-    },
+    
     icon: {
         marginRight: 10,
     }

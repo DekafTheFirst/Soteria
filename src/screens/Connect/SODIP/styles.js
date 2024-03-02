@@ -4,20 +4,27 @@ export const createStyles = (colors) => StyleSheet.create({
     container: {
         flex: 1,
     },
+    scrollContainer: {
+
+    },
     headerImage: {
         width: '100%',
-        aspectRatio: 9 / 16
+        aspectRatio: 16 / 9
     },
     textWrapper: {
         padding: 20,
-        borderBottomColor: colors.text,
+        width: "100%",
+        borderBottomColor: colors.gold,
         borderBottomWidth: 1
 
     },
+    inputContainer: {
+        width: "100%"
+    },
     formContainer: {
-        width: "100%",
         marginTop: 20,
         padding: 20,
+        marginBottom: 10
     },
 
     btnContainer: {
