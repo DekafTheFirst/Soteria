@@ -25,7 +25,8 @@ export default Input = ({ inputProps }) => {
                     // }}
                     textInputStyle={{ color: colors.text, verticalAlign: 'middle', height: '100%' }}
                     textContainerStyle={{
-                        height: '100%'
+                        height: '100%',
+                        padding: 0,
                     }}
                     onChangeFormattedText={inputProps.handleChange(inputProps.name)}
                     defaultCode='US'

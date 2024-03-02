@@ -1,8 +1,10 @@
 import { StyleSheet } from "react-native";
 
-export const createStyles = (colors) => StyleSheet.create({
+export const createStyles = (colors, focused) => StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     scrollContainer: {
 
@@ -19,12 +21,27 @@ export const createStyles = (colors) => StyleSheet.create({
 
     },
     inputContainer: {
-        width: "100%"
+        width: "100%",
+        padding: 20
     },
+
     formContainer: {
         marginTop: 20,
         padding: 20,
-        marginBottom: 10
+    },
+
+    input: {
+        marginBottom: 20,
+        height: 55,
+        width: "100%",
+        color: colors.text,
+        backgroundColor: colors.cardBackground,
+        borderWidth: 1,
+        borderColor: focused ? colors.color1 : colors.gray,
+        borderRadius: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        overflow: 'hidden',
     },
 
     btnContainer: {
