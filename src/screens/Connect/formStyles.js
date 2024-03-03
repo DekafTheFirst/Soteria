@@ -16,18 +16,23 @@ export const createStyles = (colors, focused) => StyleSheet.create({
     textWrapper: {
         padding: 20,
         width: "100%",
-        borderBottomColor: colors.gold,
+        borderBottomColor: colors.gray,
         borderBottomWidth: 1
 
     },
     inputContainer: {
         width: "100%",
-        padding: 20
+        paddingHorizontal: 20,
+        paddingTop: 40,
+        paddingBottom: 150
     },
 
     formContainer: {
         marginTop: 20,
         padding: 20,
+        paddingBottom: 100,
+
+        
     },
 
     input: {

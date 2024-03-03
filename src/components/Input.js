@@ -19,14 +19,17 @@ export default Input = ({ inputProps }) => {
             {inputProps.name === 'phoneNumber' ? (
                 <PhoneInput
                     containerStyle={styles.phoneNumberInput}
+                    codeTextStyle={{alignItems: 'center'}}
                     // codeTextStyle={{ color: colors.text }}
                     // placeholder={{
                     //     color: inputProps.disabled ? 'white' : colors.gray
                     // }}
-                    textInputStyle={{ color: colors.text, verticalAlign: 'middle', height: '100%' }}
+                    textInputStyle={{ color: colors.text }}
                     textContainerStyle={{
                         height: '100%',
                         padding: 0,
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }}
                     onChangeFormattedText={inputProps.handleChange(inputProps.name)}
                     defaultCode='US'
@@ -109,6 +112,7 @@ const createStyles = (colors, focused) => (StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         justifyContent: 'center',
+        alignItems: 'center'
     },
     
     inputWithIcon: {
@@ -120,7 +124,6 @@ const createStyles = (colors, focused) => (StyleSheet.create({
         paddingLeft: 10,
         height: '100%',
         width: "90%",
-
         fontWeight: '500',
         color: colors.text
     },

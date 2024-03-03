@@ -39,7 +39,7 @@ const Home = () => {
 
         <View style={styles.featured}>
           <View style={[styles.column, styles.column1]}>
-            <TouchableOpacity style={styles.sermons}>
+            <TouchableOpacity style={[styles.featuredCard, styles.sermons]}>
               <Image
                 source={require('../../Assets/sermon.jpg')}
                 resizeMethod='scale'
@@ -58,7 +58,7 @@ const Home = () => {
 
           <View style={[styles.column, styles.column2]}>
             <View style={[styles.featuredContentWrapper, styles.prayerRequestsWrapper]}>
-              <TouchableOpacity style={styles.prayerRequests}>
+              <TouchableOpacity onPress={()=>{navigation.navigate('PrayerRequests')}}style={[styles.featuredCard,styles.prayerRequests]}>
 
                 <Image
                   source={require('../../Assets/pray.jpg')}
@@ -79,7 +79,7 @@ const Home = () => {
 
             </View>
             <View style={[styles.featuredContentWrapper, styles.connectWrapper]}>
-              <TouchableOpacity style={styles.connect} onPress={()=>navigation.navigate('SODIP')}>
+              <TouchableOpacity style={[styles.featuredCard, styles.connect]} onPress={()=>navigation.navigate('SODIP')}>
 
                 <Image
                   source={require('../../Assets/abstract-6.jpg')}
@@ -117,7 +117,6 @@ const Home = () => {
               resizeMethod='scale'
               style={styles.imageBackground}
             />
-
             <View style={[styles.overlay, styles.eventOverlay]}></View>
 
             <View style={styles.eventContentInner}>

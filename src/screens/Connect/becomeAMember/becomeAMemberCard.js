@@ -5,7 +5,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { createStyles } from '../cardStyles';
 import { ImageBackground } from 'expo-image';
 
-const SodipCard = ({footerText}) => {
+const BecomeAMemberCard = ({footerText}) => {
     const { colors } = useTheme();
     const styles = createStyles(colors);
 
@@ -16,12 +16,12 @@ const SodipCard = ({footerText}) => {
         <View style={styles.card}>
             <View style={styles.darkOverlay}></View>
             <ImageBackground
-                source={require('../../../Assets/abstract-6.jpg')}
+                source={require('../../../Assets/abstract-2.jpg')}
                 resizeMethod='scale'
                 style={styles.imageBackground}
             >
                 <View style={[styles.contentWrapper]}>
-                    <Text style={styles.contentTitle}>Sodip</Text>
+                    <Text style={styles.contentTitle}>Become A Member</Text>
                 </View>
                 {footerText && <Text style={styles.footerText}>{footerText}</Text>}
             </ImageBackground>
@@ -29,4 +29,4 @@ const SodipCard = ({footerText}) => {
     )
 }
 
-export default SodipCard
+export default BecomeAMemberCard

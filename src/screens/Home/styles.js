@@ -3,6 +3,13 @@ import { StyleSheet } from "react-native";
 
 export const createStyles = (colors) => {
 
+    const brightShadow = {
+        shadowColor: '#fff', // White shadow color
+        shadowOffset: { width: 0.4, height: 0.4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5, // For Android
+    }
     return StyleSheet.create({
         homeContainer: {
             flex: 1,
@@ -30,7 +37,7 @@ export const createStyles = (colors) => {
             backgroundColor: colors.card2Background,
             padding: 8,
             borderRadius: 10,
-            
+
             elevation: 3, // Elevation for Android shadow
             shadowColor: colors.text, // Shadow color
             shadowOffset: { width: 0, height: 2 }, // Shadow offset
@@ -45,18 +52,15 @@ export const createStyles = (colors) => {
             right: 0,
             top: -2,
             borderRadius: '50%',
-
-
         },
 
         sectionTitle: {
-            fontSize: 24, 
-            fontWeight: "600", 
+            fontSize: 24,
+            fontWeight: "600",
             color: colors.text,
         },
 
         featured: {
-
             marginHorizontal: -20,
             flexDirection: 'row',
         },
@@ -68,11 +72,16 @@ export const createStyles = (colors) => {
         },
 
         column1: {
-            paddingRight: 10
+            paddingRight: 10,
+            ...brightShadow
         },
 
         column2: {
             paddingLeft: 10,
+        },
+
+        featuredCard: {
+
         },
 
         sermons: {
@@ -80,11 +89,14 @@ export const createStyles = (colors) => {
             height: "100%",
             overflow: 'hidden',
             borderRadius: 15,
+            ...brightShadow
         },
 
         featuredContentWrapper: {
             width: "100%",
             height: "50%",
+            ...brightShadow
+
         },
 
         prayerRequestsWrapper: {
@@ -93,6 +105,7 @@ export const createStyles = (colors) => {
 
         connectWrapper: {
             paddingTop: 10,
+
         },
 
 
@@ -108,10 +121,10 @@ export const createStyles = (colors) => {
             height: "100%",
             overflow: 'hidden',
             borderRadius: 15,
-
         },
 
         imageBackground: {
+            borderRadius: 20,
             ...StyleSheet.absoluteFillObject,
             zIndex: -1, // Ensure that the image is behind other content
         },
@@ -142,11 +155,11 @@ export const createStyles = (colors) => {
 
         event: {
             height: 220,
-            backgroundColor: 'white',
-            borderRadius: 20,
             justifyContent: 'center',
             alignItems: 'center',
-            overflow: 'hidden'
+            borderRadius: 20,
+            overflow: 'hidden',
+            
         },
 
         eventContentInner: {
@@ -155,7 +168,9 @@ export const createStyles = (colors) => {
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 5
+            gap: 5,
+            backgroundColor: 'transparent',
+
         },
 
         eventTitle: {
@@ -163,7 +178,8 @@ export const createStyles = (colors) => {
             width: "90%",
             textAlign: "center",
             color: 'white',
-            fontWeight: '900'
+            fontWeight: '900',
+
         },
 
         eventDate: {

@@ -9,6 +9,8 @@ import EditProfile from '../screens/More/EditProfile/EditProfile.js';
 import Login from '../screens/Authentication/Login.js';
 import AuthStack from './AuthStack.js';
 import SODIP from '../screens/Connect/Sodip/Sodip.js';
+import SOCITH from '../screens/Connect/socith/socith.js';
+import PrayerRequests from '../screens/Connect/prayerRequests/prayerRequests.js';
 
 const MainStack = () => {
     const Stack = createStackNavigator();
@@ -21,6 +23,12 @@ const MainStack = () => {
             <Stack.Screen options={{
                 headerShown: true,
             }} name="SODIP" component={SODIP} />
+            <Stack.Screen options={{
+                headerShown: true,
+            }} name="SOCITH" component={SOCITH} />
+            <Stack.Screen options={{
+                headerShown: true,
+            }} name="PrayerRequests" component={PrayerRequests} />
             <Stack.Screen name="AuthStack" component={AuthStack} />
             <Stack.Screen name="EventDetails" component={EventDetails} />
             <Stack.Screen name="About" component={About} />

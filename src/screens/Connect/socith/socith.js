@@ -2,15 +2,14 @@ import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, KeyboardAv
 import React, { useState } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { createStyles } from '../formStyles';
-
 import { useAuth } from '../../../context/AuthContext';
 import { Image } from 'expo-image';
 import { Formik } from 'formik';
 import * as yup from 'yup'
 import Input from '../../../components/Input';
 import PhoneInput from 'react-native-phone-number-input';
-import SodipCard from './SodipCard';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import SocithCard from './socithCard';
 
 const inputItems = [
     { title: "First Name: ", name: "firstName", },
@@ -29,7 +28,7 @@ const signInValidationSchema = yup.object().shape({
         .max(20, 'Username must be at most 20 characters'),
 })
 
-const SODIP = () => {
+const SOCITH = () => {
     const { colors } = useTheme();
     const styles = createStyles(colors);
 
@@ -44,7 +43,7 @@ const SODIP = () => {
 
 
             <ScrollView contentContainerStyle={styles.scrollContainer}>
-                <SodipCard />
+                <SocithCard />
                 <View style={styles.textWrapper}>
                     <Text style={{ color: colors.text }}>If you would like to go through the Soteria
                         Discipleship Program</Text>
@@ -108,4 +107,4 @@ const SODIP = () => {
     )
 }
 
-export default SODIP
+export default SOCITH

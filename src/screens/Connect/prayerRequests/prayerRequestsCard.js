@@ -5,7 +5,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { createStyles } from '../cardStyles';
 import { ImageBackground } from 'expo-image';
 
-const SodipCard = ({footerText}) => {
+const PrayerRequestsCard = ({ footerText }) => {
     const { colors } = useTheme();
     const styles = createStyles(colors);
 
@@ -16,17 +16,17 @@ const SodipCard = ({footerText}) => {
         <View style={styles.card}>
             <View style={styles.darkOverlay}></View>
             <ImageBackground
-                source={require('../../../Assets/abstract-6.jpg')}
+                source={require('../../../Assets/abstract-4.jpg')}
                 resizeMethod='scale'
                 style={styles.imageBackground}
             >
-                <View style={[styles.contentWrapper]}>
-                    <Text style={styles.contentTitle}>Sodip</Text>
+                <View style={[styles.contentWrapper, styles.prayerRequestWrapper]}>
+                    <Text style={[styles.contentTitle, styles.prayerRequests]}>Prayer Requests</Text>
                 </View>
-                {footerText && <Text style={styles.footerText}>{footerText}</Text>}
+                <Text style={styles.footerText}>{footerText}</Text>
             </ImageBackground>
         </View>
     )
 }
 
-export default SodipCard
+export default PrayerRequestsCard
