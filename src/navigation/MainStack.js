@@ -11,6 +11,7 @@ import AuthStack from './AuthStack.js';
 import SODIP from '../screens/Connect/Sodip/Sodip.js';
 import SOCITH from '../screens/Connect/socith/socith.js';
 import PrayerRequests from '../screens/Connect/prayerRequests/prayerRequests.js';
+import Media from '../screens/Media/Media.js';
 
 const MainStack = () => {
     const Stack = createStackNavigator();
@@ -30,6 +31,7 @@ const MainStack = () => {
                 headerShown: true,
             }} name="PrayerRequests" component={PrayerRequests} />
             <Stack.Screen name="AuthStack" component={AuthStack} />
+            <Stack.Screen name="Media" component={Media} />
             <Stack.Screen name="EventDetails" component={EventDetails} />
             <Stack.Screen name="About" component={About} />
         </Stack.Navigator>

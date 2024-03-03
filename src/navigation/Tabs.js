@@ -4,11 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Home from '../screens/Home/Home';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import Connect from '../screens/Connect/Connect/Connect';
-import Media from '../screens/Media/Media';
 import More from '../screens/More/Options/Options';
 import { moderateScale } from 'react-native-size-matters';
 import { useTheme } from '@react-navigation/native';
 import Give from '../screens/Give/Give';
+import Media from '../screens/Media/Media';
 
 
 const Tabs = () => {
@@ -16,7 +16,8 @@ const Tabs = () => {
     const Tab = createBottomTabNavigator();
     return (
         <Tab.Navigator
-            initialRouteName='Connect' 
+        
+            initialRouteName='Media' 
             screenOptions={{
                 tabBarActiveTintColor: '#A96F00',
                 tabBarStyle: {
@@ -35,7 +36,6 @@ const Tabs = () => {
                 tabBarIconStyle: {
                     color: colors.text
                 }
-            
                 
             }}>
             <Tab.Screen 

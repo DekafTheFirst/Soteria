@@ -6,16 +6,17 @@ import About from '../screens/About/About.js';
 import EventDetails from '../screens/EventDetails/EventDetails.js';
 import Home from '../screens/Home/Home.js';
 import SplashScreen from '../screens/SplashScreen/SplashScreen.js';
-import Login  from '../screens/Authentication/Login.js';
-import Register  from '../screens/Authentication/Register.js';
+import Login from '../screens/Authentication/Login.js';
+import Register from '../screens/Authentication/Register.js';
 import SOCITH from '../screens/Connect/socith/socith.js';
 import SODIP from '../screens/Connect/Sodip/Sodip.js';
 import PrayerRequests from '../screens/Connect/prayerRequests/prayerRequests.js';
 import BecomeAMember from '../screens/Connect/becomeAMember/becomeAMember.js';
+import Media from '../screens/Media/Media.js';
 const AuthStack = () => {
     const Stack = createStackNavigator();
     return (
-        <Stack.Navigator 
+        <Stack.Navigator
             screenOptions={{
                 headerShown: false
             }}
@@ -35,6 +36,12 @@ const AuthStack = () => {
             <Stack.Screen options={{
                 headerShown: true,
             }} name="PrayerRequests" component={PrayerRequests} />
+
+            <Stack.Screen options={{
+                headerShown: true,
+                animationEnabled: true
+            }} name="Media" component={Media} />
+
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="EventDetails" component={EventDetails} />
             <Stack.Screen name="About" component={About} />

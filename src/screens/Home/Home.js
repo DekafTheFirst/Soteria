@@ -39,7 +39,7 @@ const Home = () => {
 
         <View style={styles.featured}>
           <View style={[styles.column, styles.column1]}>
-            <TouchableOpacity style={[styles.featuredCard, styles.sermons]}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('Media')}}style={[styles.featuredCard, styles.sermons]}>
               <Image
                 source={require('../../Assets/sermon.jpg')}
                 resizeMethod='scale'
