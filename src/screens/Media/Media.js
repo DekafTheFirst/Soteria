@@ -28,7 +28,7 @@ const Media = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Sermons')}>
         <Image source={require('../../Assets/preaching.jpg')} style={styles.btnImage}/>
         <View style={styles.btnContent}>
           <Text style={styles.btnText}>Sermons</Text>

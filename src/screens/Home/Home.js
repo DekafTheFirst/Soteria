@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import { createStyles, styles } from './styles'
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import { useNavigation, useTheme } from '@react-navigation/native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { Image } from 'expo-image';
+import EventsComponent from '../../components/EventsComponent';
 
 const Home = () => {
   // useEffect(()=>{
@@ -12,8 +13,16 @@ const Home = () => {
   // },[])
   const { colors } = useTheme();
   const navigation = useNavigation()
-  
+
   const styles = createStyles(colors)
+
+
+  const events = [
+    { title: 'WOMEN\'S BREAKFAST MEETING', time: '10:00AM', date: '12-09-2024', id: 1, imgUrl: require('../../Assets/pray.jpg'), desc: "When we walk with the lord we learn to trust his word. When we walk with the lord we learn to trust his word.When we walk with the lord we learn to trust his word.When we walk with the lord we learn to trust his word." },
+    { title: 'Trusting the word of God', time: '10:00AM', date: '12-09-2024', id: 2, imgUrl: require('../../Assets/sermon.jpg'), desc: "When we walk with the lord we learn to trust his word. When we walk with the lord we learn to trust his word.When we walk with the lord we learn to trust his word.When we walk with the lord we learn to trust his word." },
+    { title: 'Trusting the word of God', time: '10:00AM', date: '12-09-2024', id: 3, imgUrl: require('../../Assets/abstract-1.jpg'), desc: "When we walk with the lord we learn to trust his word. When we walk with the lord we learn to trust his word.When we walk with the lord we learn to trust his word.When we walk with the lord we learn to trust his word." },
+  ]
+
   return (
     <ScrollView style={styles.homeContainer}>
       <View style={styles.userDetails}>
@@ -39,26 +48,25 @@ const Home = () => {
 
         <View style={styles.featured}>
           <View style={[styles.column, styles.column1]}>
-            <TouchableOpacity onPress={()=>{navigation.navigate('Media')}}style={[styles.featuredCard, styles.sermons]}>
+            <TouchableOpacity onPress={() => { navigation.navigate('Sermons') }} style={[styles.featuredCard, styles.sermons]}>
               <Image
-                source={require('../../Assets/sermon.jpg')}
+                source={require('../../Assets/preaching.jpg')}
                 resizeMethod='scale'
                 style={styles.imageBackground}
               />
               <View style={styles.featuredContentInner}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight: '700' }}>Sermons</Text>
                 <View style={{ marginTop: "auto" }}>
-                  <AntDesign name="playcircleo" size={45} color="white" />
-                  <Text style={{ color: 'white', fontSize: 18, marginTop: 5 }}>Watch Here</Text>
+                  <AntDesign name="playcircleo" size={32} color="white" />
+                  <Text style={{ color: 'white', fontSize: 16, marginTop: 5 }}>Watch Here</Text>
                 </View>
               </View>
-
             </TouchableOpacity>
           </View>
 
           <View style={[styles.column, styles.column2]}>
             <View style={[styles.featuredContentWrapper, styles.prayerRequestsWrapper]}>
-              <TouchableOpacity onPress={()=>{navigation.navigate('PrayerRequests')}}style={[styles.featuredCard,styles.prayerRequests]}>
+              <TouchableOpacity onPress={() => { navigation.navigate('PrayerRequests') }} style={[styles.featuredCard, styles.prayerRequests]}>
 
                 <Image
                   source={require('../../Assets/pray.jpg')}
@@ -79,7 +87,7 @@ const Home = () => {
 
             </View>
             <View style={[styles.featuredContentWrapper, styles.connectWrapper]}>
-              <TouchableOpacity style={[styles.featuredCard, styles.connect]} onPress={()=>navigation.navigate('SODIP')}>
+              <TouchableOpacity style={[styles.featuredCard, styles.connect]} onPress={() => navigation.navigate('SODIP')}>
 
                 <Image
                   source={require('../../Assets/abstract-6.jpg')}
@@ -110,25 +118,7 @@ const Home = () => {
         <Text style={styles.sectionTitle}>
           Events
         </Text>
-        <View style={{ marginTop: 20, gap: 20 }}>
-          <TouchableOpacity style={styles.event}>
-            <Image
-              source={require('../../Assets/pray.jpg')}
-              resizeMethod='scale'
-              style={styles.imageBackground}
-            />
-            <View style={[styles.overlay, styles.eventOverlay]}></View>
-
-            <View style={styles.eventContentInner}>
-              <Text style={styles.eventTitle}>WOMEN'S BREAKFAST MEETING</Text>
-              <Text style={styles.eventDate}>FEBRUARY 24TH</Text>
-              <Text style={styles.eventTime}>10:00AM</Text>
-            </View>
-
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.event}><Text>Event</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.event}><Text>Event</Text></TouchableOpacity>
-        </View>
+        <EventsComponent />
       </View>
     </ScrollView>
   )

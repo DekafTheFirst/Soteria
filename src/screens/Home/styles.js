@@ -6,7 +6,7 @@ export const createStyles = (colors) => {
     const brightShadow = {
         shadowColor: '#fff', // White shadow color
         shadowOffset: { width: 0.4, height: 0.4 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.01,
         shadowRadius: 5,
         elevation: 5, // For Android
     }

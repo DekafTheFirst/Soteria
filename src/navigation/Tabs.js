@@ -17,7 +17,7 @@ const Tabs = () => {
     return (
         <Tab.Navigator
         
-            initialRouteName='Media' 
+            initialRouteName='Home' 
             screenOptions={{
                 tabBarActiveTintColor: '#A96F00',
                 tabBarStyle: {

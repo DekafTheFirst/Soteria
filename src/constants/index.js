@@ -32,7 +32,7 @@ export const darkTheme = {
         lightBlue: " #A5C2DE",
         cardBackground: '#1F1F1F',
         card2Background: '#BDC1C6',
-        background: '#121213',
+        background: '#121212',
         greenOverlay: " #bdc1c6",
         gray: '#BDC1C6',
         lightGray: '#EDEDED',

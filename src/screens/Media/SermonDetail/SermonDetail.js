@@ -5,13 +5,12 @@ import { createStyles } from './styles';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Ionicons } from '@expo/vector-icons';
 
-const EventDetails = ({ route }) => {
-  const { event } = route.params
+const SermonDetails = ({ route }) => {
+  const { sermon } = route.params
   const { colors } = useTheme();
   const navigation = useNavigation();
   const styles = createStyles(colors)
 
-  
   return (
     <View style={styles.container}>
       <YoutubePlayer
@@ -25,23 +24,23 @@ const EventDetails = ({ route }) => {
           <View style={styles.iconWrapper}>
             <Ionicons name="book-outline" size={24} color={colors.text} style={styles.icon} />
           </View>
-          <Text style={styles.title}>{event.title}</Text>
+          <Text style={styles.title}>{sermon.title}</Text>
         </View>
 
         <View style={styles.item}>
           <View style={styles.iconWrapper}>
             <Ionicons name="person" size={24} color={colors.text} style={styles.icon} />
           </View>
-          <Text style={styles.preacher}>{event.preacher}</Text>
+          <Text style={styles.preacher}>{sermon.preacher}</Text>
         </View>
 
         <View style={styles.item}>
           <View style={styles.iconWrapper}>
             <Ionicons name="calendar-number" size={24} color={colors.text} style={styles.icon} />
           </View>
-          <Text style={styles.date}>{event.date}</Text>
+          <Text style={styles.date}>{sermon.date}</Text>
         </View>
-        <Text style={styles.desc}>{event.desc}</Text>
+        <Text style={styles.desc}>{sermon.desc}</Text>
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.btnText}>Leave Comment</Text>
         </TouchableOpacity>
@@ -50,12 +49,13 @@ const EventDetails = ({ route }) => {
   )
 }
 
-EventDetails.navigationOptions = ({ route }) => {
-  const { item } = route.params
-  return {
-    title: item.customTitle,
-  };
-};
+// SermonDetails.navigationOptions = ({ navigation }) => {
+//   const customTitle = navigation.getParam('title', 'Default Title'); // Get the customTitle prop from navigation
+//   console.log(customTitle)
+//   return {
+//     title: customTitle,
+//   };
+// };
 
-export default EventDetails
+export default SermonDetails
 
