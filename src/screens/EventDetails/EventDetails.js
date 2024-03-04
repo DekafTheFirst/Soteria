@@ -23,17 +23,12 @@ const EventDetails = ({ route }) => {
       <View style={styles.content}>
         <View style={styles.item}>
           <View style={styles.iconWrapper}>
-            <Ionicons name="book-outline" size={24} color={colors.text} style={styles.icon} />
+            <Ionicons name="book" size={24} color={colors.text} style={styles.icon} />
           </View>
           <Text style={styles.title}>{event.title}</Text>
         </View>
 
-        <View style={styles.item}>
-          <View style={styles.iconWrapper}>
-            <Ionicons name="person" size={24} color={colors.text} style={styles.icon} />
-          </View>
-          <Text style={styles.preacher}>{event.preacher}</Text>
-        </View>
+        
 
         <View style={styles.item}>
           <View style={styles.iconWrapper}>
@@ -41,6 +36,16 @@ const EventDetails = ({ route }) => {
           </View>
           <Text style={styles.date}>{event.date}</Text>
         </View>
+
+
+        <View style={styles.item}>
+          <View style={styles.iconWrapper}>
+            <Ionicons name="time" size={24} color={colors.text} style={styles.icon} />
+          </View>
+          <Text style={styles.preacher}>{event.time}</Text>
+        </View>
+
+
         <Text style={styles.desc}>{event.desc}</Text>
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.btnText}>Leave Comment</Text>

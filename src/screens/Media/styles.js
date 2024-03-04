@@ -57,7 +57,8 @@ export const createStyles = (colors) => {
 
         btnImage: {
             flex: 2,
-            aspectRatio: 16/9
+            aspectRatio: 16/9,
+            backgroundColor: 'gray'
         },
 
         btnContent: {

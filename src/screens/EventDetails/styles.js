@@ -50,7 +50,7 @@ export const createStyles = (colors) => {
             fontSize: 16,
             fontStyle: 'italic',
             color: colors.text,
-            fontWeight: '300',
+            fontWeight: '400',
             marginLeft: 10,
 
         },
