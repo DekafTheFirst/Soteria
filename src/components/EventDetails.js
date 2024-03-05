@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import YoutubePlayer from "react-native-youtube-iframe";
@@ -10,6 +10,22 @@ const EventDetails = ({ route }) => {
   const { colors } = useTheme();
   const navigation = useNavigation();
   const styles = createStyles(colors)
+
+
+  const openExternalLink = () => {
+    // Replace 'https://example.com' with the URL you want to open
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdT8jHfLqodAOG-OJoHgj7LKzECVkzYL34uB1QMA5NfoOTzZQ/viewform?usp=embed_facebook';
+
+    // Check if the Linking API is supported on the device
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        // Open the external link
+        Linking.openURL(url);
+      } else {
+        console.log("Don't know how to open URI: " + url);
+      }
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -39,12 +55,21 @@ const EventDetails = ({ route }) => {
           <Text style={styles.preacher}>{event.attributes.time}</Text>
         </View>
 
+        <View style={styles.item}>
+          <Text style={styles.theme}>Theme: {event.attributes.theme}</Text>
+        </View>
 
+
+
+      </View>
+
+      <View style={{padding: 20}}>
         <Text style={styles.desc}>{event.attributes.description}</Text>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>Leave Comment</Text>
+        <TouchableOpacity style={styles.btn} onPress={openExternalLink}>
+          <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>
+
     </View>
   )
 }
@@ -74,8 +99,11 @@ export const createStyles = (colors) => {
     },
 
     content: {
-      marginTop: 20,
-      padding: 20
+      marginTop: 10,
+      padding: 20,
+      paddingBottom: 5,
+      borderBottomColor: colors.gray,
+      borderBottomWidth: 2
     },
 
     item: {
@@ -93,7 +121,7 @@ export const createStyles = (colors) => {
     title: {
       color: colors.text,
       marginLeft: 10,
-      fontSize: 18,
+      fontSize: 24,
       fontWeight: '600'
     },
 
@@ -101,14 +129,23 @@ export const createStyles = (colors) => {
       color: colors.text,
       fontSize: 16,
       marginLeft: 10,
-
+      fontWeight: '600'
     },
+
     date: {
       fontSize: 16,
       color: colors.text,
       fontWeight: '400',
       marginLeft: 10,
+      fontWeight: '600'
 
+
+    },
+    theme: {
+      fontSize: 16,
+      color: colors.text,
+      textTransform: 'capitalize',
+      fontWeight: '600'
     },
     desc: {
       fontSize: 18,

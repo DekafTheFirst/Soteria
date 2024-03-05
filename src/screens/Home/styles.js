@@ -10,6 +10,7 @@ export const createStyles = (colors) => {
         shadowRadius: 5,
         elevation: 5, // For Android
     }
+
     return StyleSheet.create({
         homeContainer: {
             flex: 1,
@@ -150,50 +151,6 @@ export const createStyles = (colors) => {
             width: "100%",
             position: "absolute",
             backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        },
-
-
-        event: {
-            height: 220,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 20,
-            overflow: 'hidden',
-            
-        },
-
-        eventContentInner: {
-            padding: 10,
-            height: "100%",
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 5,
-            backgroundColor: 'transparent',
-
-        },
-
-        eventTitle: {
-            fontSize: 28,
-            width: "90%",
-            textAlign: "center",
-            color: 'white',
-            fontWeight: '900',
-
-        },
-
-        eventDate: {
-            fontSize: 16,
-            textAlign: "center",
-            color: 'white',
-            fontWeight: '500'
-        },
-
-        eventTime: {
-            fontSize: 16,
-            textAlign: "center",
-            color: 'white',
-            fontWeight: '800'
         },
 
     })
