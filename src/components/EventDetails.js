@@ -1,9 +1,11 @@
-import { Button, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Button, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
+import { getEventVideo } from '../api/Events';
+import { Video } from 'expo-av';
 
 const EventDetails = ({ route }) => {
   const { event } = route.params
@@ -11,6 +13,18 @@ const EventDetails = ({ route }) => {
   const navigation = useNavigation();
   const styles = createStyles(colors)
 
+  const [videoUri, setVideoUri] = useState(null)
+  const video = useRef(null)
+
+  useEffect(() => {
+    const fetchEventVideo = async () => {
+      const eventVideoUri = await getEventVideo(event.id)
+      if (eventVideoUri) setVideoUri(`http://192.168.5.197:1337${eventVideoUri}`)
+
+    }
+
+    if (!videoUri) fetchEventVideo()
+  }, [videoUri])
 
   const openExternalLink = () => {
     // Replace 'https://example.com' with the URL you want to open
@@ -27,9 +41,24 @@ const EventDetails = ({ route }) => {
     });
   };
 
+
+
+
+
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: event.attributes.imageUri }} style={styles.headerImage} />
+    <ScrollView style={styles.container}>
+      {videoUri ? (
+        <Video
+          ref={video}
+          source={{ uri: videoUri }}
+          style={styles.headerImage}
+          resizeMode='contain'
+          useNativeControls
+          shouldPlay
+          
+        />
+      ) : (<Image source={{ uri: event.attributes.imageUri }} style={styles.headerImage} />)}
+
       <View style={styles.content}>
         <View style={styles.item}>
           <View style={styles.iconWrapper}>
@@ -52,25 +81,27 @@ const EventDetails = ({ route }) => {
           <View style={styles.iconWrapper}>
             <Ionicons name="time" size={24} color={colors.text} style={styles.icon} />
           </View>
-          <Text style={styles.preacher}>{event.attributes.time}</Text>
+          {event.attributes.time && <Text style={styles.preacher}>{event.attributes.time}</Text>}
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.theme}>Theme: {event.attributes.theme}</Text>
+          {event.attributes.theme && <Text style={styles.theme}>Theme: {event.attributes.theme}</Text>}
         </View>
 
 
 
       </View>
 
-      <View style={{padding: 20}}>
+      <View style={{
+        padding: 20, paddingBottom: 100,
+      }}>
         <Text style={styles.desc}>{event.attributes.description}</Text>
         <TouchableOpacity style={styles.btn} onPress={openExternalLink}>
           <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>
 
-    </View>
+    </ScrollView>
   )
 }
 
@@ -89,7 +120,6 @@ export const createStyles = (colors) => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      paddingBottom: 40,
       backgroundColor: colors.background
     },
 
@@ -101,7 +131,6 @@ export const createStyles = (colors) => {
     content: {
       marginTop: 10,
       padding: 20,
-      paddingBottom: 5,
       borderBottomColor: colors.gray,
       borderBottomWidth: 2
     },
