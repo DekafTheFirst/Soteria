@@ -77,7 +77,7 @@ const MainStack = () => {
             <Stack.Screen
                 options={({ route }) => ({
                     headerShown: true,
-                    title: route.params.title
+                    title: route.params.sermon.title
                 })} name="SermonDetail"
                 component={SermonDetails}
             />
@@ -85,7 +85,7 @@ const MainStack = () => {
             <Stack.Screen
                 options={({ route }) => ({
                     headerShown: true,
-                    title: route.params.event.title
+                    title: route.params.event.attributes.title
                 })}
                 name="EventDetails"
                 component={EventDetails}

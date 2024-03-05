@@ -20,7 +20,7 @@ const Sermons = () => {
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity style={styles.sermon} onPress={()=>{
-                navigation.navigate('SermonDetail', { sermon: item, title: item.title })
+                navigation.navigate('SermonDetail', { sermon: item })
             }}>
                 <View style={[styles.overlay]}></View>
                 <Image

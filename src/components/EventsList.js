@@ -40,9 +40,14 @@ const EventsList = () => {
             {events && events.map((item, index) => {
                 const { date, time } = formatDateTime(item.attributes.date, item.attributes.time);
                 const imageUri = `http://192.168.5.197:1337${item.attributes.image.data.attributes.url}`
+
+                item = {...item, attributes: {...item.attributes, date, time, imageUri}}
+                
+                console.log(item)
+
                 if (item.attributes.specialStyling == true) {
                     return (
-                        <TouchableOpacity key={item.id} style={styles.event} onPress={() => navigation.navigate('EventDetails', { event: item })}>
+                        <TouchableOpacity key={item.id} style={styles.event} onPress={() => navigation.navigate('EventDetails', { event: {...item} })}>
                             
                         </TouchableOpacity>
                     )

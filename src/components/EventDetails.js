@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
 
 const EventDetails = ({ route }) => {
   const { event } = route.params
@@ -12,12 +13,7 @@ const EventDetails = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <YoutubePlayer
-      
-        height={240}
-        play={false}
-        videoId={"iee2TATGMyI"}
-      />
+      <Image source={{ uri: event.attributes.imageUri }} style={styles.headerImage} />
       <View style={styles.content}>
         <View style={styles.item}>
           <View style={styles.iconWrapper}>
@@ -26,7 +22,7 @@ const EventDetails = ({ route }) => {
           <Text style={styles.title}>{event.attributes.title}</Text>
         </View>
 
-        
+
 
         <View style={styles.item}>
           <View style={styles.iconWrapper}>
@@ -53,86 +49,86 @@ const EventDetails = ({ route }) => {
   )
 }
 
-EventDetails.navigationOptions = ({ route }) => {
-  const { item } = route.params
-  return {
-    title: item.customTitle,
-  };
-};
 
 export default EventDetails
 
 export const createStyles = (colors) => {
 
   const brightShadow = {
-      shadowColor: '#fff', // White shadow color
-      shadowOffset: { width: 0.4, height: 0.4 },
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
-      elevation: 5, // For Android
+    shadowColor: '#fff', // White shadow color
+    shadowOffset: { width: 0.4, height: 0.4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5, // For Android
   }
   return StyleSheet.create({
-      container: {
-          flex: 1,
-          paddingBottom: 40,
-          backgroundColor: colors.background
-      },
+    container: {
+      flex: 1,
+      paddingBottom: 40,
+      backgroundColor: colors.background
+    },
 
-      content: {
-          padding: 20
-      },  
+    headerImage: {
+      width: '100%',
+      aspectRatio: 16 / 9
+    },
 
-      item: {
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginBottom: 15
-      },
+    content: {
+      marginTop: 20,
+      padding: 20
+    },
 
-      iconWrapper: {
-          width: 30,
-          justifyContent: 'center',
-          alignItems: 'center'
-      },
+    item: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 15
+    },
 
-      title: {
-          color: colors.text,
-          marginLeft: 10,
-          fontSize: 18,
-          fontWeight: '600'
-      },
+    iconWrapper: {
+      width: 30,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
 
-      preacher: {
-          color: colors.text,
-          fontSize: 16,
-          marginLeft: 10,
+    title: {
+      color: colors.text,
+      marginLeft: 10,
+      fontSize: 18,
+      fontWeight: '600'
+    },
 
-      },
-      date: {
-          fontSize: 16,
-          color: colors.text,
-          fontWeight: '400',
-          marginLeft: 10,
+    preacher: {
+      color: colors.text,
+      fontSize: 16,
+      marginLeft: 10,
 
-      },
-      desc: {
-          fontSize: 18,
-          color: colors.text,
-          fontWeight: '400',
-      },
-      btn: {
-          marginTop: 30,
-          borderWidth: 2,
-          borderColor: colors.gold,
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 20
-      },
-      btnText: {
-          color:colors.gold,
-          fontWeight: '800',
-          textTransform: 'uppercase'
-      }
-      
+    },
+    date: {
+      fontSize: 16,
+      color: colors.text,
+      fontWeight: '400',
+      marginLeft: 10,
+
+    },
+    desc: {
+      fontSize: 18,
+      color: colors.text,
+      fontWeight: '400',
+    },
+    btn: {
+      marginTop: 30,
+      borderWidth: 2,
+      borderColor: colors.gold,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20
+    },
+    btnText: {
+      color: colors.gold,
+      fontWeight: '800',
+      textTransform: 'uppercase'
+    }
+
 
   })
 }
