@@ -34,6 +34,7 @@ export default Input = ({ inputProps }) => {
                     onChangeFormattedText={inputProps.handleChange(inputProps.name)}
                     defaultCode='US'
                     name={inputProps.name}
+                    value={inputProps.value}
                 />
             ) : (
                 <View style={[
@@ -46,7 +47,6 @@ export default Input = ({ inputProps }) => {
                         placeholder={inputProps.placeHolder}
                         placeholderTextColor={inputProps.disabled ? 'white' : colors.gray}
                         name={inputProps.name}
-                        value={inputProps.initialValue}
                         onChangeText={inputProps.handleChange(inputProps.name)}
                         onFocus={() => setFocused(true)}
                         onBlur={() => setFocused(false)}
@@ -54,6 +54,7 @@ export default Input = ({ inputProps }) => {
                         editable={!inputProps.disabled}
                         keyboardType={inputProps.keyboardType}
                         secureTextEntry={inputProps.secureTextEntry}
+                        value={inputProps.value}
                     />
                     {inputProps.toggleIcon && (
                         <View style={styles.icon}>

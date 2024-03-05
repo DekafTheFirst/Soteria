@@ -28,3 +28,16 @@ export const getEventVideo = async (id) => {
         return error
     }
 }
+
+export const createPrayerRequestEntry = async (data) => {
+    console.log(data)
+    try{
+        // const events = await axios.get(`http://192.168.5.197:1337/api/events/${id}?populate=image`)
+        const response = await axios.post(`http://192.168.5.197:1337/api/prayer-requests`, {data})
+        return response.data        
+        
+    } catch(error) {
+        console.error('Error creating prayer request:', error);
+        throw error
+    }
+}

@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { createStyles } from '../formStyles';
 import { useAuth } from '../../../context/AuthContext';
-import { Formik } from 'formik';
+import {  Formik } from 'formik';
 import * as yup from 'yup'
 import Input from '../../../components/Input';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PrayerRequestsCard from './prayerRequestsCard';
+import { createPrayerRequestEntry } from '../../../api/Events';
+import ErrorMessage from '../../../components/ErrorMessage';
 
 const inputItems = [
     { title: "First Name: ", name: "firstName", },
@@ -26,6 +28,8 @@ const signInValidationSchema = yup.object().shape({
         .max(20, 'Username must be at most 20 characters'),
 })
 
+
+
 const PrayerRequests = () => {
     const { colors } = useTheme();
     const styles = createStyles(colors);
@@ -35,6 +39,17 @@ const PrayerRequests = () => {
 
     const [showSpinner, setShowSpinner] = useState(false)
     const [error, setError] = useState('')
+
+    const createPrayerRequest = async (data) => {
+        try {
+            const createdPrayerRequest = await createPrayerRequestEntry(data);
+            console.log('prayer request created successfully: ', createdPrayerRequest)
+        } catch(error) {
+            setError(error)
+            console.log(error)
+            return error
+        }
+    }
 
     return (
         <KeyboardAwareScrollView extraScrollHeight={40}>
@@ -53,10 +68,17 @@ const PrayerRequests = () => {
                 <Formik
                     validationSchema={signInValidationSchema}
                     validateOnBlur={true}   // Validate fields when they lose focus
-                    initialValues={{ email: currentUser?.email }}
-                    onSubmit={async (values) => {
+                    initialValues={{ email: currentUser?.email, firstName: '', lastName: '', phoneNumber: '' }}
+                    onSubmit={async (values, {resetForm}) => {
                         setShowSpinner(true)
-                        console.log('submitted', values);
+                        try{
+                            await createPrayerRequest({...values, prayerRequest: 'I pray for guidance'})
+                            resetForm()
+                        }
+                        catch(error) {
+                            console.log(error)
+                        }
+                        
                         setShowSpinner(false)
                     }}>
                     {({
@@ -66,10 +88,10 @@ const PrayerRequests = () => {
 
                             <View style={styles.inputContainer}>
                                 {inputItems.map((input, index) => {
-                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched }} ></Input>)
+                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched, value: values[input.name] }} ></Input>)
                                 })}
-                                
 
+                                
 
                                 <View style={styles.btnContainer}>
                                     <TouchableOpacity

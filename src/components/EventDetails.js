@@ -20,11 +20,13 @@ const EventDetails = ({ route }) => {
     const fetchEventVideo = async () => {
       const eventVideoUri = await getEventVideo(event.id)
       if (eventVideoUri) setVideoUri(`http://192.168.5.197:1337${eventVideoUri}`)
-
     }
 
     if (!videoUri) fetchEventVideo()
   }, [videoUri])
+
+
+
 
   const openExternalLink = () => {
     // Replace 'https://example.com' with the URL you want to open
