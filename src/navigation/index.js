@@ -9,6 +9,7 @@ import { lightTheme, darkTheme } from '../constants'
 import { useSettingsContext } from '../context/SettingsContext'
 import { useAuth } from '../context/AuthContext'
 import MainStack from './MainStack'
+import { EventsContextProvider } from '../context/EventsContext'
 const RootNavigation = () => {
   // const setUrlConfig = () => {
   //   console.log('called setUrlConfig');
@@ -18,13 +19,14 @@ const RootNavigation = () => {
   // useEffect(()=> {
   //   setUrlConfig();
   // }, [])
-  const {settings} = useSettingsContext()
-  const {currentUser} =  useAuth()
+  const { settings } = useSettingsContext()
+  const { currentUser } = useAuth()
 
   return (
-    <NavigationContainer theme={ settings.darkMode ? darkTheme: lightTheme}>
-      <MainStack/> 
-    </NavigationContainer>
+      <NavigationContainer theme={settings.darkMode ? darkTheme : lightTheme}>
+        <MainStack />
+      </NavigationContainer>
+
 
   )
 }

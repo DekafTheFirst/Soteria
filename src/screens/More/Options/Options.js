@@ -84,12 +84,12 @@ const More = () => {
                 </View>
                 <Text style={styles.title}>Logout</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('AuthStack')} style={styles.logoutBtn}>
+              {/* <TouchableOpacity onPress={() => navigation.navigate('AuthStack')} style={styles.logoutBtn}>
                 <View style={styles.iconWrapper}>
                   <MaterialCommunityIcons name="logout" size={20} color={colors.settingsIcon} />
                 </View>
                 <Text style={styles.title}>Sign In</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
 
           ) : (

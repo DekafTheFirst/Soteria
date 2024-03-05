@@ -3,7 +3,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import Tabs from './Tabs';
 import About from '../screens/About/About.js';
-import EventDetails from '../screens/EventDetails/EventDetails.js';
+import EventDetails from '../components/EventDetails.js';
 import Home from '../screens/Home/Home.js';
 import SplashScreen from '../screens/SplashScreen/SplashScreen.js';
 import Login from '../screens/Authentication/Login.js';
@@ -13,6 +13,7 @@ import SODIP from '../screens/Connect/Sodip/Sodip.js';
 import PrayerRequests from '../screens/Connect/prayerRequests/prayerRequests.js';
 import BecomeAMember from '../screens/Connect/becomeAMember/becomeAMember.js';
 import Media from '../screens/Media/Media.js';
+
 const AuthStack = () => {
     const Stack = createStackNavigator();
     return (

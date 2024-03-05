@@ -11,6 +11,7 @@ import { RobotoSlab_700Bold, RobotoSlab_500Medium, RobotoSlab_400Regular, useFon
 import { SettingsContext, SettingsProvider, useSettingsContext } from './src/context/SettingsContext';
 import { useContext } from 'react';
 import Toast from 'react-native-toast-message';
+import { EventsContextProvider } from './src/context/EventsContext';
 
 export const firebaseApp = initializeApp(firebaseConfig);
 
@@ -21,7 +22,7 @@ export const auth = initializeAuth(firebaseApp, {
 export default function App() {
   let [fontsLoaded] = useFonts({
     RobotoSlab_700Bold: RobotoSlab_700Bold,
-    RobotoSlab_500Medium, 
+    RobotoSlab_500Medium,
     RobotoSlab_400Regular
   });
 
@@ -34,7 +35,7 @@ export default function App() {
       <SettingsProvider>
           <RootNavigation />
       </SettingsProvider>
-      <Toast/>
+      <Toast />
     </AuthProvider>
 
   );

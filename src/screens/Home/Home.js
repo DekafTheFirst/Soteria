@@ -5,7 +5,7 @@ import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { Image } from 'expo-image';
-import EventsComponent from '../../components/EventsComponent';
+import EventsList from '../../components/EventsList';
 
 const Home = () => {
   // useEffect(()=>{
@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <ScrollView style={styles.homeContainer}>
       <View style={styles.userDetails}>
-        <TouchableOpacity style={styles.userAvatarWrapper}>
+        <TouchableOpacity style={styles.userAvatarWrapper} onPress={()=>{navigation.navigate('EditProfile')}}>
           <Image source={require('../../Assets/person.jpg')} style={styles.userAvatar} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.userNotificationsBtn}>
@@ -118,7 +118,7 @@ const Home = () => {
         <Text style={styles.sectionTitle}>
           Events
         </Text>
-        <EventsComponent />
+        <EventsList />
       </View>
     </ScrollView>
   )
