@@ -1,11 +1,12 @@
 import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createStyles, styles } from './styles'
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { Image } from 'expo-image';
 import EventsList from '../../components/EventsList';
+import { useAuth } from '../../context/AuthContext';
 
 const Home = () => {
   // useEffect(()=>{
@@ -13,7 +14,7 @@ const Home = () => {
   // },[])
   const { colors } = useTheme();
   const navigation = useNavigation()
-
+  const { currentUser } = useAuth()
   const styles = createStyles(colors)
 
 
@@ -26,7 +27,7 @@ const Home = () => {
   return (
     <ScrollView style={styles.homeContainer}>
       <View style={styles.userDetails}>
-        <TouchableOpacity style={styles.userAvatarWrapper} onPress={()=>{navigation.navigate('EditProfile')}}>
+        <TouchableOpacity style={styles.userAvatarWrapper} onPress={() => { navigation.navigate('EditProfile') }}>
           <Image source={require('../../Assets/person.jpg')} style={styles.userAvatar} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.userNotificationsBtn}>
@@ -86,28 +87,54 @@ const Home = () => {
               </TouchableOpacity>
 
             </View>
-            <View style={[styles.featuredContentWrapper, styles.connectWrapper]}>
-              <TouchableOpacity style={[styles.featuredCard, styles.connect]} onPress={() => navigation.navigate('SODIP')}>
 
-                <Image
-                  source={require('../../Assets/abstract-6.jpg')}
-                  resizeMethod='scale'
-                  style={styles.imageBackground}
-                />
-                <View style={styles.overlay}></View>
+            {currentUser?.memeber ? (
+              <View style={[styles.featuredContentWrapper, styles.connectWrapper]}>
+                <TouchableOpacity style={[styles.featuredCard, styles.connect]} onPress={() => navigation.navigate('SODIP')}>
 
-                <View style={styles.featuredContentInner}>
+                  <Image
+                    source={require('../../Assets/abstract-6.jpg')}
+                    resizeMethod='scale'
+                    style={styles.imageBackground}
+                  />
+                  <View style={styles.overlay}></View>
 
-                  <Text style={styles.featuredContentTitle}>Soteria Discipleship</Text>
-                  <View style={styles.featuredContentFooter}>
-                    <Text style={{ color: 'white', fontSize: 16 }}>SODIP</Text>
-                    <AntDesign name="right" size={20} color="white" />
+                  <View style={styles.featuredContentInner}>
+
+                    <Text style={styles.featuredContentTitle}>Soteria Discipleship</Text>
+                    <View style={styles.featuredContentFooter}>
+                      <Text style={{ color: 'white', fontSize: 16 }}>SODIP</Text>
+                      <AntDesign name="right" size={20} color="white" />
+                    </View>
                   </View>
-                </View>
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
-            </View>
+              </View>
+            ) : (
+              <View style={[styles.featuredContentWrapper, styles.connectWrapper]}>
+                <TouchableOpacity style={[styles.featuredCard, styles.connect]} onPress={() => navigation.navigate('BecomeAMember')}>
+
+                  <Image
+                    source={require('../../Assets/abstract-2.jpg')}
+                    resizeMethod='scale'
+                    style={styles.imageBackground}
+                  />
+                  <View style={styles.overlay}></View>
+
+                  <View style={styles.featuredContentInner}>
+
+                    <Text style={styles.featuredContentTitle}>Become A Member</Text>
+                    <View style={styles.featuredContentFooter}>
+                      <Text style={{ color: 'white', fontSize: 16 }}>Join Us</Text>
+                      <AntDesign name="right" size={20} color="white" />
+                    </View>
+                  </View>
+
+                </TouchableOpacity>
+
+              </View>
+            )}
           </View>
 
 

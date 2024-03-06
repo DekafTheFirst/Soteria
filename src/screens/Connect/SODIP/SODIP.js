@@ -13,10 +13,10 @@ import SodipCard from './SodipCard';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const inputItems = [
-    { title: "First Name: ", name: "firstName", },
-    { title: "Last Name: ", name: "lastName", },
-    { title: "Phone Number ", name: "phoneNumber" },
-    { title: "Email: ", name: "email" },
+    { title: "First Name: ", name: "firstName", type:'regular'},
+    { title: "Last Name: ", name: "lastName", type:'regular'},
+    { title: "Phone Number ", name: "phoneNumber", type:'phoneNumber' },
+    { title: "Email: ", name: "email", type:'regular' },
 ]
 
 const signInValidationSchema = yup.object().shape({
@@ -69,7 +69,7 @@ const SODIP = () => {
 
                             <View style={styles.inputContainer}>
                                 {inputItems.map((input, index) => {
-                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched }} ></Input>)
+                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched, type: input.type }} ></Input>)
                                 })}
                                 
 

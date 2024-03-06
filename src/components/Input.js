@@ -12,19 +12,19 @@ export default Input = ({ inputProps }) => {
     const [focused, setFocused] = useState();
     const [secure, setSecure] = useState()
     const styles = createStyles(colors, focused);
-    return (
-        <View style={[styles.wrapper]}>
-            {inputProps.title && <Text style={styles.inputTitle}>{inputProps.title}</Text>}
 
-            {inputProps.name === 'phoneNumber' ? (
+    let inputComponent;
+    switch (inputProps.type) {
+        case 'phoneNumber':
+            inputComponent =
                 <PhoneInput
                     containerStyle={styles.phoneNumberInput}
-                    codeTextStyle={{alignItems: 'center'}}
+                    codeTextStyle={{ alignItems: 'center' }}
                     // codeTextStyle={{ color: colors.text }}
                     // placeholder={{
                     //     color: inputProps.disabled ? 'white' : colors.gray
                     // }}
-                    textInputStyle={{ color: colors.text }}
+                    textInputStyle={{ color: colors.black }}
                     textContainerStyle={{
                         height: '100%',
                         padding: 0,
@@ -34,9 +34,37 @@ export default Input = ({ inputProps }) => {
                     onChangeFormattedText={inputProps.handleChange(inputProps.name)}
                     defaultCode='US'
                     name={inputProps.name}
-                    value={inputProps.value}
                 />
-            ) : (
+            break;
+        case 'textArea':
+            inputComponent = (
+                <View style={[
+                    styles.textArea,
+                    inputProps.disabled && styles.disabledInput,
+                    inputProps.icon && styles.inputWithIcon,
+                    inputProps.toggleIcon && styles.inputWithIcon
+                ]}>
+                    <TextInput
+                        multiline
+                        numberOfLines={5}
+                        placeholder={inputProps.placeHolder}
+                        placeholderTextColor={inputProps.disabled ? 'white' : colors.gray}
+                        name={inputProps.name}
+                        onChangeText={inputProps.handleChange(inputProps.name)}
+                        onFocus={() => setFocused(true)}
+                        onBlur={() => setFocused(false)}
+                        style={styles.textAreaInput}
+                        editable={!inputProps.disabled}
+                        keyboardType={inputProps.keyboardType}
+                        secureTextEntry={inputProps.secureTextEntry}
+                        value={inputProps.value}
+                    />
+                </View>
+            )
+            break;
+
+        case 'regular':
+            inputComponent = (
                 <View style={[
                     styles.input,
                     inputProps.disabled && styles.disabledInput,
@@ -71,7 +99,15 @@ export default Input = ({ inputProps }) => {
 
                 </View>
             )
-            }
+
+    }
+
+
+    return (
+        <View style={[styles.wrapper]}>
+            {inputProps.title && <Text style={styles.inputTitle}>{inputProps.title}</Text>}
+
+            {inputComponent}
 
 
             {(inputProps.errors[inputProps.name] && inputProps.touched[inputProps.name]) && <Text style={{ fontSize: 10, color: 'red' }}>{inputProps.errors[inputProps.name]}</Text>}
@@ -105,6 +141,15 @@ const createStyles = (colors, focused) => (StyleSheet.create({
         justifyContent: 'center',
         overflow: 'hidden',
     },
+    textArea: {
+        width: '100%',
+        color: colors.text,
+        backgroundColor: colors.cardBackground,
+        borderWidth: 1,
+        borderColor: focused ? colors.color1 : colors.gray,
+        borderRadius: 10,
+        overflow: 'hidden',
+    },
     phoneNumberInput: {
         height: 55,
         borderWidth: 1,
@@ -115,20 +160,28 @@ const createStyles = (colors, focused) => (StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    
+
     inputWithIcon: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
     textInput: {
+        minHeight: 200,
         paddingLeft: 10,
-        height: '100%',
         width: "90%",
         fontWeight: '500',
         color: colors.text
     },
-    
+    textAreaInput: {
+        minHeight: 80,
+        paddingTop: 3,
+        paddingLeft: 10,
+        width: "100%",
+        fontWeight: '500',
+        color: colors.text,
+    },
+
     icon: {
         marginRight: 10,
     }

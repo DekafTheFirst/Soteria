@@ -30,7 +30,6 @@ export const getEventVideo = async (id) => {
 }
 
 export const createPrayerRequestEntry = async (data) => {
-    console.log(data)
     try{
         // const events = await axios.get(`http://192.168.5.197:1337/api/events/${id}?populate=image`)
         const response = await axios.post(`http://192.168.5.197:1337/api/prayer-requests`, {data})
@@ -39,5 +38,16 @@ export const createPrayerRequestEntry = async (data) => {
     } catch(error) {
         console.error('Error creating prayer request:', error);
         throw error
+    }
+}
+
+export const getLiveStream = async () => {
+    try{
+        const response = await axios.get('http://192.168.5.197:1337/api/live-stream');
+        const liveStreamID = response.data.data.attributes.youtubeVideoID
+        return liveStreamID
+    } catch(error) {
+        console.log(error)
+        return error
     }
 }

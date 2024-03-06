@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { getEventVideo } from '../api/Events';
 import { Video } from 'expo-av';
+import { openExternalLink } from './OpenExternalLink';
 
 const EventDetails = ({ route }) => {
   const { event } = route.params
@@ -28,24 +29,6 @@ const EventDetails = ({ route }) => {
 
 
 
-  const openExternalLink = () => {
-    // Replace 'https://example.com' with the URL you want to open
-    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdT8jHfLqodAOG-OJoHgj7LKzECVkzYL34uB1QMA5NfoOTzZQ/viewform?usp=embed_facebook';
-
-    // Check if the Linking API is supported on the device
-    Linking.canOpenURL(url).then((supported) => {
-      if (supported) {
-        // Open the external link
-        Linking.openURL(url);
-      } else {
-        console.log("Don't know how to open URI: " + url);
-      }
-    });
-  };
-
-
-
-
 
   return (
     <ScrollView style={styles.container}>
@@ -57,7 +40,7 @@ const EventDetails = ({ route }) => {
           resizeMode='contain'
           useNativeControls
           shouldPlay
-          
+
         />
       ) : (<Image source={{ uri: event.attributes.imageUri }} style={styles.headerImage} />)}
 
@@ -79,12 +62,14 @@ const EventDetails = ({ route }) => {
         </View>
 
 
-        <View style={styles.item}>
-          <View style={styles.iconWrapper}>
-            <Ionicons name="time" size={24} color={colors.text} style={styles.icon} />
+        {event.attributes.time &&
+          <View style={styles.item}>
+            <View style={styles.iconWrapper}>
+              <Ionicons name="time" size={24} color={colors.text} style={styles.icon} />
+            </View>
+            <Text style={styles.preacher}>{event.attributes.time}</Text>
           </View>
-          {event.attributes.time && <Text style={styles.preacher}>{event.attributes.time}</Text>}
-        </View>
+        }
 
         <View style={styles.item}>
           {event.attributes.theme && <Text style={styles.theme}>Theme: {event.attributes.theme}</Text>}
@@ -98,7 +83,7 @@ const EventDetails = ({ route }) => {
         padding: 20, paddingBottom: 100,
       }}>
         <Text style={styles.desc}>{event.attributes.description}</Text>
-        <TouchableOpacity style={styles.btn} onPress={openExternalLink}>
+        <TouchableOpacity style={styles.btn} onPress={() => openExternalLink('https://docs.google.com/forms/d/e/1FAIpQLSdT8jHfLqodAOG-OJoHgj7LKzECVkzYL34uB1QMA5NfoOTzZQ/viewform?usp=embed_facebook')}>
           <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>

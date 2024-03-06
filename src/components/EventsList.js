@@ -27,8 +27,12 @@ const EventsList = () => {
     }, [events])
 
     const formatDateTime = (dateString, timeString) => {
-        const formattedDate = moment(dateString).format('Do MMMM, YYYY');
-        const formattedTime = moment(timeString, 'HH:mm:ss').format('h:mmA');
+        let formattedTime = null
+        let formattedDate = null
+
+        if (dateString) formattedDate = moment(dateString).format('Do MMMM, YYYY');
+        if (timeString) formattedTime = moment(timeString, 'HH:mm:ss').format('h:mmA');
+
 
         return {
             date: formattedDate,
@@ -111,9 +115,8 @@ const createStyles = (colors) => {
             height: "100%",
             width: "100%",
             position: "absolute",
-            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
         },
-
         eventContentInner: {
             padding: 10,
             height: "100%",

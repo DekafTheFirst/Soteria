@@ -12,10 +12,11 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import SocithCard from './socithCard';
 
 const inputItems = [
-    { title: "First Name: ", name: "firstName", },
-    { title: "Last Name: ", name: "lastName", },
-    { title: "Phone Number ", name: "phoneNumber" },
-    { title: "Email: ", name: "email" },
+    { title: "First Name: ", name: "firstName", type:'regular'},
+    { title: "Last Name: ", name: "lastName", type:'regular'},
+    { title: "Phone Number ", name: "phoneNumber", type:'phoneNumber' },
+    { title: "Email: ", name: "email", type:'regular' },
+    { title: "Address: ", name: "address", type:'textArea' },
 ]
 
 const signInValidationSchema = yup.object().shape({
@@ -45,8 +46,11 @@ const SOCITH = () => {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <SocithCard />
                 <View style={styles.textWrapper}>
-                    <Text style={{ color: colors.text }}>If you would like to go through the Soteria
-                        Discipleship Program</Text>
+                    <Text style={{ color: colors.text, marginBottom: 10}}>SOCITH - Soteria Church in The Home</Text>
+                    <Text style={{ color: colors.text }}>
+                        Do you want to be a part of the family and join us
+                        all the way to the home every Wednesday at
+                        7:00PM ?</Text>
                     <Text style={{ color: colors.text, marginTop: 20 }}>Please sign up here.</Text>
                 </View>
 
@@ -68,9 +72,9 @@ const SOCITH = () => {
 
                             <View style={styles.inputContainer}>
                                 {inputItems.map((input, index) => {
-                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched }} ></Input>)
+                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched, type: input.type }} ></Input>)
                                 })}
-                                
+
 
 
                                 <View style={styles.btnContainer}>

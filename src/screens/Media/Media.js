@@ -19,8 +19,10 @@ const Media = () => {
           style={styles.imageBackground}
         />
       </View>
-      <View style={styles.btnContainer}></View>
-      <TouchableOpacity style={styles.btn}>
+      <View style={styles.btnContainer}>
+        
+      </View>
+      <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('LiveStream')}>
         <Image source={require('../../Assets/live-stream.jpg')} style={styles.btnImage}/>
         <View style={styles.btnContent}>
           <Text style={styles.btnText}>Live Stream</Text>

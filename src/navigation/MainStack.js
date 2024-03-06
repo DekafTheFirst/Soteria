@@ -14,6 +14,8 @@ import SermonDetails from '../screens/Media/SermonDetail/SermonDetail.js';
 import EventDetails from '../components/EventDetails.js';
 import Login from '../screens/Authentication/Login.js';
 import Register from '../screens/Authentication/Register.js';
+import BecomeAMember from '../screens/Connect/becomeAMember/becomeAMember.js';
+import LiveStream from '../screens/Media/LiveStream/LiveStream.js';
 
 
 
@@ -56,7 +58,7 @@ const MainStack = () => {
                 component={PrayerRequests}
             />
 
-           
+
 
             <Stack.Screen
                 options={{
@@ -80,6 +82,21 @@ const MainStack = () => {
                     title: route.params.sermon.title
                 })} name="SermonDetail"
                 component={SermonDetails}
+            />
+
+            <Stack.Screen
+                options={() => ({
+                    headerShown: true,
+                    title: 'Live Stream'
+                })} name="LiveStream"
+                component={LiveStream}
+            />
+
+            <Stack.Screen
+                options={{
+                    headerShown: true,
+                }}
+                name="BecomeAMember" component={BecomeAMember}
             />
 
             <Stack.Screen

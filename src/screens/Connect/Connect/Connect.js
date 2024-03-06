@@ -18,7 +18,7 @@ const Connect = () => {
 
   return (
     <ScrollView>
-      {currentUser && !currentUser.member ? (
+      {!currentUser?.member ? (
         <TouchableOpacity onPress={() => {
           navigation.navigate('SODIP')
         }}>

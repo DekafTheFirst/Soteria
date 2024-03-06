@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
             await updateProfile(user, { displayName, member: false });
             console.log('updated successfully')
 
-            setCurrentUser(user);
+            setCurrentUser(user); 
             setIsLoggedOut(false);
 
             console.log('current user set successfully')
@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            setIsLoggedOut(false);
         } catch (error) {
             throw error;
         }

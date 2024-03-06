@@ -5,9 +5,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'; import { useNavigation, useTheme } from '@react-navigation/native';
 import { scale } from 'react-native-size-matters';
 import * as yup from 'yup'
-import {  Formik } from 'formik';
+import { Formik } from 'formik';
 import { useAuth } from '../../context/AuthContext';
 import ErrorMessage from '../../components/ErrorMessage';
+import Input from '../../components/Input';
 // import { showSnackBar } from '../../utils/SnackBar';
 
 const signUpValidationForm = yup.object().shape({
@@ -52,7 +53,7 @@ const Register = () => {
                 </View>
 
                 <View style={styles.formContainer}>
-                    {error && <ErrorMessage error={error}/>}
+                    {error && <ErrorMessage error={error} />}
                     <Formik
                         validationSchema={signUpValidationForm}
                         initialValues={{
@@ -60,83 +61,72 @@ const Register = () => {
                             email: '',
                             password: '',
                         }}
-                    onSubmit={(values) => {
-                        setShowSpinner(true)
-                        register({
-                                email: values.email, 
-                                password: values.password, 
+                        onSubmit={(values) => {
+                            setShowSpinner(true)
+                            register({
+                                email: values.email,
+                                password: values.password,
                                 displayName: values.name,
-                            }).then(()=>{
-                            setShowSpinner(false);
-                            navigation.navigate('Tabs')
-                            // Alert.alert(
-                            //     "",
-                            //     res.msg,
-                            //     [
-                            //         {
-                            //             text: 'Ok',
-                            //             onPress: ()=> navigation.navigate('Login')
-                            //         }
-                            //     ]
+                            }).then(() => {
+                                setShowSpinner(false);
+                                navigation.navigate('Tabs')
+                                // Alert.alert(
+                                //     "",
+                                //     res.msg,
+                                //     [
+                                //         {
+                                //             text: 'Ok',
+                                //             onPress: ()=> navigation.navigate('Login')
+                                //         }
+                                //     ]
 
-                            // )
+                                // )
 
-                        }).catch(err =>  {
-                            console.log(err)
-                            setError(err)
-                            setShowSpinner(false);
-                            // showSnackBar(err.response.data?.msg, 'ERROR')
+                            }).catch(err => {
+                                console.log(err)
+                                setError(err)
+                                setShowSpinner(false);
+                                // showSnackBar(err.response.data?.msg, 'ERROR')
 
-                        })
-                    }}
+                            })
+                        }}
                     >
                         {({ handleSubmit, isValid, values, errors, handleChange, touched }) => (
                             <>
                                 <View style={styles.inputContainer}>
-                                    <View style={styles.wrapper}>
-                                        <TextInput
-                                            style={styles.input}
-                                            placeholder='Enter Name'
-                                            name="name"
-                                            onChangeText={handleChange('name')}
-                                            placeholderTextColor={colors.text}
-                                        />
-                                        {(errors.name && touched.name) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>}
-                                    </View>
-                                    <View style={styles.wrapper}>
-                                        <TextInput
-                                            style={styles.input}
-                                            placeholder='Enter Email'
-                                            keyboardType='email-address'
-                                            name="email"
-                                            onChangeText={handleChange('email')}
-                                            placeholderTextColor={colors.text}
-                                        />
-                                        {(errors.email && touched.email) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>}
+                                    <Input inputProps={{
+                                        placeHolder: "Enter Name",
+                                        name: 'name',
+                                        handleChange,
+                                        errors,
+                                        touched,
+                                        type: 'regular',
+                                        value: values.name
+                                    }} ></Input>
 
-                                    </View>
-                                    <View style={styles.wrapper}>
-                                        <View style={styles.input}>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
-                                                <View>
-                                                    <TextInput
-                                                        placeholder='Enter Password'
-                                                        secureTextEntry={!showPassword}
-                                                        name="password"
-                                                        onChangeText={handleChange('password')}
-                                                        placeholderTextColor={colors.text}
-                                                    />
-                                                    {(errors.password && touched.password) && <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>}
-                                                </View>
+                                    <Input inputProps={{
+                                        placeHolder: "Enter Email",
+                                        name: 'email', handleChange,
+                                        errors,
+                                        touched,
+                                        type: 'regular',
+                                        value: values.email
+                                    }} ></Input>
 
-                                                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                                                    <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color={colors.text} />
-                                                </TouchableOpacity>
-                                            </View>
-
-
-                                        </View>
-                                    </View>
+                                    <Input inputProps={{
+                                        placeHolder: "Enter Password",
+                                        name: 'password',
+                                        handleChange,
+                                        errors,
+                                        touched,
+                                        secureTextEntry: showPassword,
+                                        toggleIcon: (
+                                            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                                                <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color={colors.text} />
+                                            </TouchableOpacity>
+                                        ),
+                                        type: 'regular'
+                                    }} ></Input>
 
                                 </View>
 

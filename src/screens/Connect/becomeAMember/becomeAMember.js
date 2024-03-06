@@ -14,10 +14,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import BecomeAMemberCard from './becomeAMemberCard';
 
 const inputItems = [
-    { title: "First Name: ", name: "firstName", },
-    { title: "Last Name: ", name: "lastName", },
-    { title: "Phone Number ", name: "phoneNumber" },
-    { title: "Email: ", name: "email" },
+    { title: "First Name: ", name: "firstName", type: 'regular' },
+    { title: "Last Name: ", name: "lastName", type: 'regular'},
+    { title: "Email: ", name: "email", type: 'regular' },
+    { title: "Phone Number ", name: "phoneNumber",type: 'phoneNumber' },
 ]
 
 const signInValidationSchema = yup.object().shape({
@@ -47,8 +47,8 @@ const BecomeAMember = () => {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <BecomeAMemberCard />
                 <View style={styles.textWrapper}>
-                    <Text style={{ color: colors.text }}>If you would like to go through the Soteria
-                        Discipleship Program</Text>
+                    <Text style={{ color: colors.text }}>If you would like to become a member of Soteria
+church, we are happy to welcome you. </Text>
                     <Text style={{ color: colors.text, marginTop: 20 }}>Please sign up here.</Text>
                 </View>
 
@@ -70,7 +70,7 @@ const BecomeAMember = () => {
 
                             <View style={styles.inputContainer}>
                                 {inputItems.map((input, index) => {
-                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched }} ></Input>)
+                                    return (<Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), initialValue: initialValues[input.name], handleChange, errors, touched, type: input.type }} ></Input>)
                                 })}
                                 
 

@@ -61,19 +61,22 @@ export default Login = () => {
                         }) => (
                             <>
                                 <View style={styles.inputContainer}>
-                                    <Input inputProps={{ placeHolder: "Enter Email", name: 'email', handleChange, errors, touched, keyboardType: 'email-address' }} ></Input>
                                     <Input inputProps={{
-                                        placeHolder: "Enter Password", 
-                                        name: 'password', 
-                                        handleChange, 
-                                        errors, 
-                                        touched, 
-                                        secureTextEntry: showPassword, 
+                                        placeHolder: "Enter Email", name: 'email', handleChange, errors, touched, keyboardType: 'email-address', type: 'regular'
+                                    }} ></Input>
+                                    <Input inputProps={{
+                                        placeHolder: "Enter Password",
+                                        name: 'password',
+                                        handleChange,
+                                        errors,
+                                        touched,
+                                        secureTextEntry: showPassword,
                                         toggleIcon: (
-                                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                                            <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color={colors.text} />
-                                        </TouchableOpacity>
-                                        )
+                                            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                                                <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={20} color={colors.text} />
+                                            </TouchableOpacity>
+                                        ),
+                                        type: 'regular'
                                     }} ></Input>
                                     <View style={styles.forgotPasswordContainer}>
                                         <TouchableOpacity>
