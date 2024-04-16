@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { createStyles } from './styles';
@@ -10,17 +10,23 @@ const SermonDetails = ({ route }) => {
   const { colors } = useTheme();
   const navigation = useNavigation();
   const styles = createStyles(colors)
-
-  
+  const [videoIsLoading, setVideoLoading] = useState(true)
 
   return (
     <View style={styles.container}>
-      <YoutubePlayer
-      
-        height={240}
-        play={false}
-        videoId={"iee2TATGMyI"}
-      />
+      <View style={styles.videoPlayerWrapper}>
+        {/* {videoIsLoading && <ActivityIndicator color={colors.text} />} */}
+        <YoutubePlayer
+          height={240}
+          width={"100%"}
+          play={true}
+          videoId={"q7zWxLABE1U"}
+          onReady={() => {
+            setVideoLoading(false)
+          }}
+        />
+      </View>
+
       <View style={styles.content}>
         <View style={styles.item}>
           <View style={styles.iconWrapper}>

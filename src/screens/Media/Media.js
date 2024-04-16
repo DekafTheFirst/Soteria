@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import React, { useState } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { createStyles } from './styles';
 import { Image } from 'expo-image';
@@ -7,17 +7,31 @@ import { Entypo } from '@expo/vector-icons';
 
 const Media = () => {
   const { colors } = useTheme();
-  const navigation = useNavigation()
-
   const styles = createStyles(colors)
+
+  const navigation = useNavigation()
+  const [loading, setLoading] = useState(false);
+
+  const handleLoadStart = () => {
+    setLoading(true);
+  };
+
+  const handleLoadEnd = () => {
+    setLoading(false);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerImage}>
+        {loading && <ActivityIndicator size="large" color={colors.text} />}  
         <Image
           source={require('../../Assets/media.jpg')}
           resizeMethod='scale'
           style={styles.imageBackground}
+          onLoadStart={handleLoadStart}
+          onLoadEnd={handleLoadEnd}
         />
+        
       </View>
       <View style={styles.btnContainer}>
         

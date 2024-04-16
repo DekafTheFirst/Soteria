@@ -17,6 +17,12 @@ export const createStyles = (colors) => {
             backgroundColor: colors.background
         },
 
+        videoPlayerWrapper: {
+            height: 240,
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+
         content: {
             padding: 20
         },  

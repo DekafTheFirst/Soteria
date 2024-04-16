@@ -21,8 +21,8 @@ const EditProfile = () => {
   // const [changesMade, setChangesMade] = useState(false)
 
   const inputItems = [
-    { title: "Username: ", placeHolder: currentUser.displayName, name: "displayName", },
-    { title: "Email: ", placeHolder: currentUser.email, name: "email", disabled:true, icon: <Ionicons  name="calendar" size={20} color={colors.text} />},
+    { title: "Username: ", placeHolder: currentUser.displayName, name: "displayName", type: 'regular'},
+    { title: "Email: ", placeHolder: currentUser.email, name: "email", disabled:true, icon: <Ionicons  name="calendar" size={20} color={colors.text} />, type: 'regular'},
   ]
 
 
@@ -84,7 +84,7 @@ const EditProfile = () => {
                 <>
                   <View style={styles.inputContainer}>
                     {inputItems.map((input, index) => (
-                      <Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), handleChange, errors, touched }} ></Input>
+                      <Input key={index} inputProps={{ title: input.title, placeHolder: input.placeHolder, name: input.name, icon: input.icon, ...(input.disabled && { disabled: input.disabled }), handleChange, errors, touched, type: input.type}} ></Input>
 
                     ))}
                     <View style={styles.forgotPasswordContainer}>

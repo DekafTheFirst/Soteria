@@ -115,7 +115,7 @@ const createStyles = (colors) => {
             height: "100%",
             width: "100%",
             position: "absolute",
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
         },
         eventContentInner: {
             padding: 10,

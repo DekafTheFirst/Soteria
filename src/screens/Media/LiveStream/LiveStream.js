@@ -33,13 +33,14 @@ const LiveStream = () => {
             setLiveStreamUrl(response)
             setLoading(false)
         }
+        // console.log(liveStreamUrl)
 
         if (!liveStreamUrl) fetchLiveStreamID()
     }, [liveStreamUrl])
 
     return (
         <View style={styles.container}>
-            <View style={{justifyContent:'center', maxHeight: 300}}>
+            <View style={{justifyContent:'center', minHeight: 240}}>
                 {loading ? (<ActivityIndicator color={colors.text} size={'large'}/>) : (
                 <YoutubePlayer
                     height={240}

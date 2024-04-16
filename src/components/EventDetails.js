@@ -7,6 +7,7 @@ import { Image } from 'expo-image';
 import { getEventVideo } from '../api/Events';
 import { Video } from 'expo-av';
 import { openExternalLink } from './OpenExternalLink';
+import { baseUrl } from '../constants';
 
 const EventDetails = ({ route }) => {
   const { event } = route.params
@@ -20,8 +21,9 @@ const EventDetails = ({ route }) => {
   useEffect(() => {
     const fetchEventVideo = async () => {
       const eventVideoUri = await getEventVideo(event.id)
-      if (eventVideoUri) setVideoUri(`http://192.168.5.197:1337${eventVideoUri}`)
+      if (eventVideoUri) setVideoUri(`${baseUrl}${eventVideoUri}`)
     }
+    // console.log(videoUri)
 
     if (!videoUri) fetchEventVideo()
   }, [videoUri])

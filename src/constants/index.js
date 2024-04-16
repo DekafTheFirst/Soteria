@@ -1,5 +1,5 @@
 import { DefaultTheme, DarkTheme } from "@react-navigation/native"
-
+export const baseUrl = "https://soteria-0c2dbc604b71.herokuapp.com"
 export const lightTheme = {
     ...DefaultTheme, 
     colors: {
